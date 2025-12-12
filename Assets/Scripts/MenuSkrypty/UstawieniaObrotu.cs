@@ -1,29 +1,30 @@
 using UnityEngine;
 using TMPro;
 
-// Zarz¹dza systemem obracania: Continuous Turn / Snap Turn.
-// - Domyœlnie (po uruchomieniu gry) ustawia obracanie ci¹g³e.
-// - Zmiana w trakcie gry dzia³a we wszystkich scenach (w tej sesji).
-// - Po zamkniêciu gry ustawienie wraca do ci¹g³ego (brak zapisu na dysk).
+// Zarz¹dza systemem obracania: Snap Turn / Continuous Turn.
+// - Domyœlnie po uruchomieniu gry: SNAP TURN (index 0).
+// - Zmiana dzia³a we wszystkich scenach w trakcie jednej sesji.
+// - Po zamkniêciu gry ustawienie wraca do SNAP TURN.
+
 public class UstawieniaObrotu : MonoBehaviour
 {
     [Header("Skrypty obracania")]
-    public MonoBehaviour continuousTurn; 
-    public MonoBehaviour snapTurn;       
+    public MonoBehaviour snapTurn;        // index 0
+    public MonoBehaviour continuousTurn;  // index 1
 
     [Header("UI (opcjonalne)")]
     public TMP_Dropdown dropdownTrybObrotu;
 
-    // 0 = continuous, 1 = snap
-    // Static = wspólne dla wszystkich scen w czasie JEDNEGO uruchomienia gry
-    private static int globalTrybObrotu = 0; // domyœlnie ci¹g³e obracanie
+    // 0 = snap, 1 = continuous
+    // static wspólne dla wszystkich scen w tej sesji
+    private static int globalTrybObrotu = 0; // DOMYŒLNIE SNAP TURN
 
     private void Awake()
     {
-        // Ustawiamy tryb na podstawie globalnej zmiennej (wspólnej miêdzy scenami)
+        // Ustawiamy aktualny tryb obrotu
         UstawTrybObrotu(globalTrybObrotu);
 
-        // Jeœli w tej scenie mamy dropdown, podpinamy go
+        // Konfiguracja dropdowna (jeœli istnieje w tej scenie)
         if (dropdownTrybObrotu != null)
         {
             dropdownTrybObrotu.onValueChanged.AddListener(OnDropdownZmianaTrybu);
@@ -40,29 +41,28 @@ public class UstawieniaObrotu : MonoBehaviour
         }
     }
 
-    // Wywo³ywane przez dropdown (OnValueChanged).
+    // Wywo³ywane przez TMP_Dropdown (OnValueChanged)
+
     public void OnDropdownZmianaTrybu(int index)
     {
-        // Zapisujemy do zmiennej statycznej (dzia³a w ca³ej sesji gry)
         globalTrybObrotu = index;
-
-        // W³¹czamy odpowiedni tryb
         UstawTrybObrotu(index);
     }
 
-    // W³¹cza/wy³¹cza odpowiednie skrypty obracania.
-    // 0 = continuous, 1 = snap.
+    // W³¹cza odpowiedni system obracania
+    // 0 = Snap Turn
+    // 1 = Continuous Turn
     private void UstawTrybObrotu(int index)
     {
-        bool continuous = (index == 0);
-
-        if (continuousTurn != null)
-            continuousTurn.enabled = continuous;
+        bool snap = (index == 0);
 
         if (snapTurn != null)
-            snapTurn.enabled = !continuous;
+            snapTurn.enabled = snap;
 
-        if (dropdownTrybObrotu != null)
+        if (continuousTurn != null)
+            continuousTurn.enabled = !snap;
+
+        if (dropdownTrybObrotu != null && dropdownTrybObrotu.value != index)
         {
             dropdownTrybObrotu.value = index;
             dropdownTrybObrotu.RefreshShownValue();

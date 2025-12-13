@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 6389006332644849552}
   - component: {fileID: 7999964131653023797}
   - component: {fileID: 5251588265522990335}
-  - component: {fileID: 5669520854841011801}
+  - component: {fileID: 36810088468882869}
   m_Layer: 0
   m_Name: Red barrier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6389006332644849552
 Transform:
@@ -87,8 +87,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5669520854841011801
-MeshCollider:
+--- !u!65 &36810088468882869
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -105,7 +105,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 3251189224439899960, guid: 69185b07ffbe52241b4cd90e8238dcaa, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 1.00241, y: 0.47340384, z: 0.4212561}
+  m_Center: {x: 0, y: 0.23670192, z: 0}

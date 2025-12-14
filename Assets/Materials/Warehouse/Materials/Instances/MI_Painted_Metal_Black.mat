@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MI_Painted_Metal_Black
+  m_Shader: {fileID: 4800000, guid: abc00000000006009077505358597247, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - Material_Texture2D_0:
+        m_Texture: {fileID: 2800000, guid: abc00000000015619597402681182262, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Material_Texture2D_1:
+        m_Texture: {fileID: 2800000, guid: abc00000000006126213063913628105, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Material_Texture2D_2:
+        m_Texture: {fileID: 2800000, guid: abc00000000002580554067461284064, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Material_Texture2D_3:
+        m_Texture: {fileID: 2800000, guid: abc00000000013796179198347697602, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Material_Texture2D_4:
+        m_Texture: {fileID: 2800000, guid: abc00000000003863301766909005332, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Material_Texture2D_5:
+        m_Texture: {fileID: 2800000, guid: abc00000000014696976560174386799, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - Texture_Tiling: 3.000000
+    - Normal_Strength: 1.000000
+    - Emissive_Intencity: 0.000000
+    - Dust_Falloff: 3.000000
+    - Dust_Texture_Tiling: 8.000000
+    - Dust_Texture_Contrast: -6.000000
+    - Dust_Opacity: 0.410667
+    - Metallic_Constant: 0.000000
+    - Roughness_Multiplier: 3.000000
+    - R_Overall_Grunge_Power: 0.330666
+    - Roughness_Grunge_02_Amount: 0.800000
+    - Roughness_Grunge_01_Amount: 0.800000
+    - Roughness_Grunge_Tilling: 240.287888
+    - R_01_Grunge_Power: 0.231358
+    - R_02_Grunge_Power: 0.639646
+    - Dust_Roughness: 0.950000
+    - AO_Strength_Offset: 0.000000
+    - _DstBlend: 0
+    - _SrcBlend: 1
+    - _UVSec: 0
+    - _ZWrite: 1
+    m_Colors:
+    - _Color: {r: 0.8, g: 0.8, b: 0.8, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - SelectionColor: {r: 0.000000, g: 0.000000, b: 0.000000, a: 0.000000}
+    - Base_Color_Multiplier: {r: 0.050766, g: 0.055735, b: 0.059375, a: 1.000000}
+    - Dust_Color: {r: 0.588542, g: 0.538502, b: 0.492495, a: 1.000000}

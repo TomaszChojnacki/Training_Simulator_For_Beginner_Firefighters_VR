@@ -17,20 +17,20 @@ MonoBehaviour:
   m_RendererType: 1
   m_RendererData: {fileID: 0}
   m_RendererDataList:
-  - {fileID: 11400000, guid: 65bc7dbf4170f435aa868c779acfb082, type: 2}
+  - {fileID: 11400000, guid: f288ae1f4751b564a96ac7587541f7a2, type: 2}
   m_DefaultRendererIndex: 0
   m_RequireDepthTexture: 0
   m_RequireOpaqueTexture: 0
   m_OpaqueDownsampling: 0
-  m_SupportsTerrainHoles: 1
+  m_SupportsTerrainHoles: 0
   m_SupportsHDR: 0
   m_HDRColorBufferPrecision: 0
-  m_MSAA: 1
+  m_MSAA: 2
   m_RenderScale: 0.8
   m_UpscalingFilter: 3
   m_FsrOverrideSharpness: 1
   m_FsrSharpness: 0.4
-  m_EnableLODCrossFade: 1
+  m_EnableLODCrossFade: 0
   m_LODCrossFadeDitheringType: 1
   m_ShEvalMode: 0
   m_LightProbeSystem: 0
@@ -51,7 +51,7 @@ MonoBehaviour:
   m_AdditionalLightsShadowResolutionTierLow: 256
   m_AdditionalLightsShadowResolutionTierMedium: 512
   m_AdditionalLightsShadowResolutionTierHigh: 1024
-  m_ReflectionProbeBlending: 1
+  m_ReflectionProbeBlending: 0
   m_ReflectionProbeBoxProjection: 1
   m_ShadowDistance: 10
   m_ShadowCascadeCount: 1
@@ -91,7 +91,7 @@ MonoBehaviour:
   m_MaxPixelLights: 0
   m_ShadowAtlasResolution: 256
   m_VolumeFrameworkUpdateMode: 0
-  m_VolumeProfile: {fileID: 11400000, guid: 10fc4df2da32a41aaa32d77bc913491c, type: 2}
+  m_VolumeProfile: {fileID: 11400000, guid: 73d832255f8801e4390d389a888f6ca0, type: 2}
   apvScenesData:
     obsoleteSceneBounds:
       m_Keys: []

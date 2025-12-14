@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 1031035448}
   - component: {fileID: 1031035449}
   - component: {fileID: 1031035450}
-  - component: {fileID: 9129232198127179263}
+  - component: {fileID: 2808846721411905623}
   m_Layer: 0
   m_Name: SM_WM00231_Warehouse_Tables_Square
   m_TagString: Untagged
@@ -119,7 +119,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1031035447}
   m_Mesh: {fileID: 4300000, guid: abc00000000001641543613055166574, type: 3}
---- !u!65 &9129232198127179263
+--- !u!65 &2808846721411905623
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

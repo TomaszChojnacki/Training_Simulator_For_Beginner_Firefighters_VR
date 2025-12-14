@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1031025000}
-  - component: {fileID: 6245355657022907272}
   m_Layer: 0
   m_Name: SM_WM00230-Plastic_Waste_Bin_Large
   m_TagString: Untagged
@@ -33,27 +32,6 @@ Transform:
   - {fileID: 1031025003}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &6245355657022907272
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1031024999}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.0729274, y: 1.4188312, z: 1.7682557}
-  m_Center: {x: -0.036463737, y: 0.7352962, z: -0.004615307}
 --- !u!1 &1031025002
 GameObject:
   m_ObjectHideFlags: 0
@@ -65,6 +43,7 @@ GameObject:
   - component: {fileID: 1031025003}
   - component: {fileID: 1031025004}
   - component: {fileID: 1031025005}
+  - component: {fileID: 8648139527696742237}
   m_Layer: 0
   m_Name: SM_WM00230-Plastic_Waste_Bin_Large
   m_TagString: Untagged
@@ -140,3 +119,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1031025002}
   m_Mesh: {fileID: 4300000, guid: abc00000000004901263238491730590, type: 3}
+--- !u!65 &8648139527696742237
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1031025002}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.071585, y: 1.4392432, z: 1.7701321}
+  m_Center: {x: -0.040528372, y: 0.7171963, z: 0.0005878806}

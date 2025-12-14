@@ -2,20 +2,24 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: MI_Plain_Metal_01_Dull
   m_Shader: {fileID: 4800000, guid: abc00000000009433611555348383200, type: 3}
-  m_ShaderKeywords: 
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -35,27 +39,44 @@ Material:
         m_Texture: {fileID: 2800000, guid: abc00000000013796179198347697602, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Texture_Tiling: 2.000000
-    - Normal_Strength: 1.000000
-    - Emissive_Intencity: 0.000000
-    - Metallic_Constant: 1.000000
-    - R_Overall_Grunge_Power: 0.430000
-    - Roughness_Grunge_02_Amount: 0.746667
-    - Roughness_Grunge_01_Amount: 0.624000
-    - Roughness_Constant: 1.000000
-    - Roughness_Grunge_Tilling: 542.531982
-    - R_01_Grunge_Power: 0.348479
-    - R_02_Grunge_Power: 0.394667
-    - Alpha_Constant: 1.000000
-    - AO_Strength_Offset: 0.000000
+    - AO_Strength_Offset: 0
+    - Alpha_Constant: 1
+    - Emissive_Intencity: 0
+    - Metallic_Constant: 1
+    - Normal_Strength: 1
+    - R_01_Grunge_Power: 0
+    - R_02_Grunge_Power: 1
+    - R_Overall_Grunge_Power: 0.6
+    - Roughness_Constant: 0.5
+    - Roughness_Grunge_01_Amount: 1
+    - Roughness_Grunge_02_Amount: 1.6
+    - Roughness_Grunge_Tilling: 800
+    - Texture_Tiling: 2
     - _DstBlend: 0
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
+    - Base_Color_Constant: {r: 0.640803, g: 0.683308, b: 0.751736, a: 1}
+    - LocalObjectBoundsMax: {r: 100, g: 100, b: 100, a: 0}
+    - LocalObjectBoundsMin: {r: 0, g: 0, b: 0, a: 0}
+    - SelectionColor: {r: 0, g: 0, b: 0, a: 0}
+    - View_BufferSizeAndInvSize: {r: 1920, g: 1080, b: 0.00052, a: 0.00092}
     - _Color: {r: 0.8, g: 0.8, b: 0.8, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - SelectionColor: {r: 0.000000, g: 0.000000, b: 0.000000, a: 0.000000}
-    - Base_Color_Constant: {r: 0.640803, g: 0.683308, b: 0.751736, a: 1.000000}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1

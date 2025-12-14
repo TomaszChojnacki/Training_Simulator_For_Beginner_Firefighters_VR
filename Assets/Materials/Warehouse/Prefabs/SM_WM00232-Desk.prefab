@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 1031035386}
   - component: {fileID: 1031035387}
   - component: {fileID: 1031035388}
-  - component: {fileID: 4894081495270656699}
+  - component: {fileID: 757082258102839645}
   m_Layer: 0
   m_Name: SM_WM00232-Desk
   m_TagString: Untagged
@@ -119,7 +119,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1031035385}
   m_Mesh: {fileID: 4300000, guid: abc00000000012553208122607073259, type: 3}
---- !u!65 &4894081495270656699
+--- !u!65 &757082258102839645
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

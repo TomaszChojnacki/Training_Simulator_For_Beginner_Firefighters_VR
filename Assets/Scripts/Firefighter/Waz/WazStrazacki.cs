@@ -1,42 +1,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// W¹¿/linia na punktach fizycznych (Rigidbody + SpringJoint) z wizualnymi ³¹cznikami.
-/// Pod³¹czony w dwóch punktach: start i end.
-/// </summary>
 public class WazStrazacki : MonoBehaviour
 {
-    [Header("Wygl¹d")]
-    [SerializeField, Min(1)] private int numberOfInnerPoints = 8;     // ile punktów pomiêdzy start i end
-    [SerializeField, Min(0.01f)] private float space = 0.30f;         // docelowy odstêp miêdzy punktami
-    [SerializeField, Min(0.01f)] private float size = 0.08f;          // skala punktów i gruboœæ ³¹czników
+    [Header("Wyglad")]
+    [SerializeField, Min(1)] private int numberOfInnerPoints = 50;     // ile punktów pomiedzy start i end
+    [SerializeField, Min(0.01f)] private float space = 0.30f;         // docelowy odstep miedzy punktami
+    [SerializeField, Min(0.01f)] private float size = 0.08f;          // skala punktow i grubosc laczników
 
     [Header("Fizyka")]
-    [SerializeField, Min(1f)] private float springForce = 250f;
-    [SerializeField, Min(0f)] private float damper = 12f;
-    [Tooltip("Jeœli true: minDistance=0, maxDistance=space (bardziej miêkkie i stabilne w VR). " +
-             "Jeœli false: minDistance=space i maxDistance=space (bardziej sztywne).")]
+    [SerializeField, Min(1f)] private float springForce = 900f;
+    [SerializeField, Min(0f)] private float damper = 90f;
     [SerializeField] private bool softDistance = true;
 
-    [Header("VR stabilizacja (opcjonalne)")]
-    [Tooltip("0 = wy³¹czone. Jeœli > 0, ogranicza prêdkoœæ Rigidbody obiektu end (np. dyszy).")]
-    [SerializeField, Min(0f)] private float maxPredkoscEnd = 6f;
+    [Header("VR stabilizacja")]
+    [SerializeField, Min(0f)] private float maxPredkoscEnd = 3f;
+    [SerializeField, Min(0f)] private float maxPredkoscKatowaEnd = 10f;
 
-    [Tooltip("0 = wy³¹czone. Jeœli > 0, ogranicza prêdkoœæ k¹tow¹ Rigidbody obiektu end.")]
-    [SerializeField, Min(0f)] private float maxPredkoscKatowaEnd = 20f;
-
-    [Header("Obiekty do podpiêcia")]
-    [SerializeField] private GameObject start;       // punkt przy pojeŸdzie (anchor)
-    [SerializeField] private GameObject end;         // dysza/koniec
-
-    [Tooltip("Prefab ³¹cznika (wizualny element miêdzy punktami). Powinien mieæ tylko mesh/renderer (bez RB).")]
+    [Header("Obiekty do podpiecia")]
+    [SerializeField] private GameObject start;       // punkt przy pojezdzie
+    [SerializeField] private GameObject end;         // punkt koniec
     [SerializeField] private GameObject connectorPrefab;
-
-    [Tooltip("Prefab punktu (musi mieæ Rigidbody + SpringJoint; Collider opcjonalnie).")]
     [SerializeField] private GameObject pointPrefab;
 
-    // wewnêtrzne listy
+    // wewnetrzne listy
     private readonly List<Transform> points = new();
     private readonly List<Transform> connectors = new();
 
@@ -45,11 +32,8 @@ public class WazStrazacki : MonoBehaviour
     private Rigidbody startRB;
     private Rigidbody endRB;
 
-    // -------------------------
     // Publiczne akcje w Inspectorze
-    // -------------------------
-
-    [ContextMenu("Zbuduj / Resetuj w¹¿ (2 punkty)")]
+    [ContextMenu("Zbuduj / Resetuj waz (2 punkty)")]
     public void BuildOrReset()
     {
         if (!Walidacja())
@@ -59,63 +43,62 @@ public class WazStrazacki : MonoBehaviour
         ZbudujPunkty();
         ZbudujLaczniki();
         OdswiezListy();
-
-        // od razu ustaw poprawne pozycje ³¹czników
+        // od razu poprawne pozycje lacznikow
         AktualizujLaczniki();
     }
 
-    [ContextMenu("Dodaj punkt (wyd³u¿)")]
+    [ContextMenu("Dodaj punkt (wydluz)")]
     public void AddPoint()
     {
         if (!Walidacja())
             return;
 
-        // Tworzymy nowy punkt przed end i przepinamy sprê¿yny:
-        // ... lastInner -> newPoint -> end
+        // Tworzymy nowy punkt przed end i przepinamy sprezyny
+        // ... lastInner - newPoint - end
         if (points.Count < 2)
         {
-            Debug.LogWarning("W¹¿ nie jest zbudowany. U¿yj: Zbuduj / Resetuj w¹¿ (2 punkty).");
+            Debug.LogWarning("Waz nie jest zbudowany");
             return;
         }
 
         // points: [start, inner0..innerN, end]
-        Transform lastInner = points.Count >= 3 ? points[^2] : points[0]; // ostatni przed end (jeœli brak innerów, to start)
+        Transform lastInner = points.Count >= 3 ? points[^2] : points[0]; // ostatni przed end, brak innerow to start)
 
-        // Usuñ sprê¿ynê lastInner -> end
+        // Usnñ sprezyne lastInner - end
         UsunSpringDo(lastInner.gameObject, endRB);
 
         // Nowy punkt
         GameObject newPoint = CreateNewPoint(numberOfInnerPoints);
-        newPoint.transform.position = lastInner.position; // startowo tam, gdzie ostatni
+        newPoint.transform.position = lastInner.position; // startowo tam gdzie ostatni
         newPoint.transform.rotation = transform.rotation;
         newPoint.transform.localScale = Vector3.one * size;
 
         Rigidbody newRB = newPoint.GetComponent<Rigidbody>();
         if (!newRB)
         {
-            Debug.LogError("pointPrefab musi mieæ Rigidbody.");
+            Debug.LogError("pointPrefab musi mieæ Rigidbody");
             DestroyImmediateSafe(newPoint);
             return;
         }
 
-        // lastInner -> newPoint
+        // lastInner - newPoint
         SpringJoint sjA = PobierzLubDodajSpring(newPoint.gameObject);
         SetSpring(sjA, lastInner.GetComponent<Rigidbody>());
 
-        // newPoint -> end
+        // newPoint - end
         SpringJoint sjB = newPoint.AddComponent<SpringJoint>();
         SetSpring(sjB, endRB);
 
-        // Nowy ³¹cznik pomiêdzy newPoint i end
+        // Nowy lacznik pomiedzy newPoint i end
         GameObject newConn = CreateNewConnector(numberOfInnerPoints + 1);
 
-        // Aktualizacja liczników i list
+        // Aktualizacja licznikow i list
         numberOfInnerPoints++;
         OdswiezListy();
         AktualizujLaczniki();
     }
 
-    [ContextMenu("Usuñ punkt (skróæ)")]
+    [ContextMenu("Usun punkt w linie")]
     public void RemovePoint()
     {
         if (!Walidacja())
@@ -123,32 +106,32 @@ public class WazStrazacki : MonoBehaviour
 
         if (numberOfInnerPoints < 1)
         {
-            Debug.LogWarning("Nie mo¿na skróciæ: brak punktów wewnêtrznych.");
+            Debug.LogWarning("Brak punktow wewnetrznych");
             return;
         }
 
         OdswiezListy();
         if (points.Count < 3)
         {
-            Debug.LogWarning("Brak punktów do usuniêcia.");
+            Debug.LogWarning("Brak punktow do usuniecia");
             return;
         }
 
-        // points: [start, inner0..innerN, end]
+        // points - start, inner0..innerN, end
         Transform lastInner = points[^2];
         Transform prevInnerOrStart = points.Count >= 4 ? points[^3] : points[0];
 
-        // Usuñ sprê¿yny prowadz¹ce lastInner (do prev i do end)
+        // Usun sprezyny prowadzace lastInner (do prev i do end)
         UsunSpringDo(lastInner.gameObject, prevInnerOrStart.GetComponent<Rigidbody>());
         UsunSpringDo(lastInner.gameObject, endRB);
 
-        // Usuñ obiekt punktu i odpowiadaj¹cy mu ³¹cznik (ostatni connector)
+        // Usun obiekt punktu i odpowiadajacy mu lacznik - ostatni connector
         Transform lastConn = connectors.Count > 0 ? connectors[^1] : null;
 
         DestroyImmediateSafe(lastInner.gameObject);
         if (lastConn) DestroyImmediateSafe(lastConn.gameObject);
 
-        // Teraz po³¹cz prev -> end
+        // Teraz polacz prev - end
         SpringJoint newSJ = prevInnerOrStart.gameObject.AddComponent<SpringJoint>();
         SetSpring(newSJ, endRB);
 
@@ -156,11 +139,7 @@ public class WazStrazacki : MonoBehaviour
         OdswiezListy();
         AktualizujLaczniki();
     }
-
-    // -------------------------
-    // Unity
-    // -------------------------
-
+    // Unity run
     private void Awake()
     {
         if (Walidacja(false))
@@ -172,8 +151,7 @@ public class WazStrazacki : MonoBehaviour
 
     private void Start()
     {
-        // Jeœli u¿ytkownik nie klikn¹³ Build, a chce automatycznie – mo¿esz odkomentowaæ:
-         BuildOrReset();
+        BuildOrReset(); // budowanie weza przy start
         OdswiezListy();
     }
 
@@ -185,17 +163,13 @@ public class WazStrazacki : MonoBehaviour
         AktualizujLaczniki();
         StabilizujEndVR();
     }
-
-    // -------------------------
     // Budowa
-    // -------------------------
-
     private bool Walidacja(bool loguj = true)
     {
         if (!start || !end || !pointPrefab || !connectorPrefab)
         {
             if (loguj)
-                Debug.LogWarning("Brakuje referencji: start, end, pointPrefab, connectorPrefab.");
+                Debug.LogWarning("Brakuje referencji start - end - pointPrefab - connectorPrefab");
             return false;
         }
 
@@ -204,15 +178,15 @@ public class WazStrazacki : MonoBehaviour
         if (!startRB || !endRB)
         {
             if (loguj)
-                Debug.LogWarning("start i end musz¹ mieæ Rigidbody (start zwykle IsKinematic=true).");
+                Debug.LogWarning("start i end musza miec Rigidbody - start zwykle IsKinematic=true");
             return false;
         }
 
-        // pointPrefab musi mieæ Rigidbody + SpringJoint (SpringJoint mo¿e dodaæ skrypt, ale prefab powinien mieæ Rigidbody)
+        // pointPrefab musi miec Rigidbody
         if (!pointPrefab.GetComponent<Rigidbody>())
         {
             if (loguj)
-                Debug.LogWarning("pointPrefab musi mieæ Rigidbody.");
+                Debug.LogWarning("pointPrefab musi miec Rigidbody");
             return false;
         }
 
@@ -221,7 +195,7 @@ public class WazStrazacki : MonoBehaviour
 
     private void UsunStareElementy()
     {
-        // usuñ wszystkie dzieci tego obiektu, które zaczynaj¹ siê od "Part"
+        // usun wszystkie dzieci tego obiektu, które zaczynaja siê od "Part"
         int length = transform.childCount;
         for (int i = 0; i < length; i++)
         {
@@ -237,9 +211,9 @@ public class WazStrazacki : MonoBehaviour
 
     private void ZbudujPunkty()
     {
-        // Tworzymy punkty pomiêdzy start i end.
-        // Rozk³adamy je na linii start->end, ale ich sprê¿yny trzymaj¹ docelowy dystans "space".
-        // Dziêki temu w¹¿ nie musi byæ idealnie prosty, ale startowo bêdzie u³o¿ony sensownie.
+        // Tworzymy punkty pomiedzy start i end
+        // Rozkladamy je na linii start - end ale ich sprezyny trzymaja docelowy dystans "space"
+        // Waz nie jest prosty ale startowo jest ustawiony
 
         Vector3 a = start.transform.position;
         Vector3 b = end.transform.position;
@@ -249,7 +223,7 @@ public class WazStrazacki : MonoBehaviour
         if (dist < 0.001f) dir = transform.forward;
         else dir /= dist;
 
-        // liczba segmentów = innerPoints + 1 (start->inner0 ... innerN->end)
+        // liczba segmentow = innerPoints + 1 (start - inner0 ... innerN - end)
         int segments = numberOfInnerPoints + 1;
 
         Rigidbody lastBody = startRB;
@@ -271,14 +245,14 @@ public class WazStrazacki : MonoBehaviour
             lastBody = rb;
         }
 
-        // ostatnie po³¹czenie: ostatni punkt (lub start) -> end
+        // ostatnie polaczenie - ostatni punkt albo start - end
         SpringJoint endSJ = lastBody.gameObject.AddComponent<SpringJoint>();
         SetSpring(endSJ, endRB);
     }
 
     private void ZbudujLaczniki()
     {
-        // liczba ³¹czników = innerPoints + 1 (start-1, 1-2 ... last-end)
+        // liczba lacznikow = innerPoints + 1  -- start-1, 1-2 -- last-end
         int connectorsCount = numberOfInnerPoints + 1;
         for (int i = 0; i < connectorsCount; i++)
         {
@@ -294,7 +268,7 @@ public class WazStrazacki : MonoBehaviour
 
         points.Add(start.transform);
 
-        // punkty wewnêtrzne
+        // punkty wewnetrzne
         for (int i = 0; i < numberOfInnerPoints; i++)
         {
             Transform p = transform.Find(PointName(i));
@@ -303,7 +277,7 @@ public class WazStrazacki : MonoBehaviour
 
         points.Add(end.transform);
 
-        // ³¹czniki
+        // laczniki
         for (int i = 0; i < numberOfInnerPoints + 1; i++)
         {
             Transform c = transform.Find(ConnectorName(i));
@@ -311,10 +285,7 @@ public class WazStrazacki : MonoBehaviour
         }
     }
 
-    // -------------------------
-    // Aktualizacja wizualnych ³¹czników
-    // -------------------------
-
+    // Aktualizacja wizualnych lacznikow
     private void AktualizujLaczniki()
     {
         int parts = connectors.Count;
@@ -342,18 +313,14 @@ public class WazStrazacki : MonoBehaviour
             else
             {
                 conn.rotation = Quaternion.LookRotation(dir.normalized, Vector3.up);
-                // Skala: X,Y = gruboœæ, Z = po³owa d³ugoœci (jak w Twoim kodzie)
+                // Skala -- X,Y = grubosc, Z = polowa dlugoœci
                 conn.localScale = new Vector3(size, size, d * 0.5f);
             }
 
             lastPoint = nextPoint;
         }
     }
-
-    // -------------------------
-    // Spring / stabilizacja
-    // -------------------------
-
+    // Spring -- stabilizacja
     private void SetSpring(SpringJoint spring, Rigidbody connectedBody)
     {
         spring.connectedBody = connectedBody;
@@ -366,13 +333,12 @@ public class WazStrazacki : MonoBehaviour
 
         if (softDistance)
         {
-            // Bardziej "wê¿owe" i stabilne w VR
             spring.minDistance = 0f;
             spring.maxDistance = space;
         }
         else
         {
-            // Bardziej sztywne (³atwiej o drgania przy szarpniêciu)
+            // Bardziej sztywne t³umienie drgan przy szarpnieciu
             spring.minDistance = space;
             spring.maxDistance = space;
         }
@@ -385,7 +351,6 @@ public class WazStrazacki : MonoBehaviour
 
         if (!endRB) return;
 
-        // Unity 6: linearVelocity
         if (maxPredkoscEnd > 0f)
         {
             float v = endRB.linearVelocity.magnitude;
@@ -417,11 +382,7 @@ public class WazStrazacki : MonoBehaviour
                 DestroyImmediateSafe(springs[i]);
         }
     }
-
-    // -------------------------
-    // Prefaby / nazwy
-    // -------------------------
-
+    // Prefaby -- nazwy
     private string ConnectorName(int index) => $"{cloneText}_{index}_Conn";
     private string PointName(int index) => $"{cloneText}_{index}_Point";
 

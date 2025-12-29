@@ -8,6 +8,11 @@ public class WazStrazacki : MonoBehaviour
     [SerializeField, Min(0.01f)] private float space = 0.30f;         // docelowy odstep miedzy punktami
     [SerializeField, Min(0.01f)] private float size = 0.08f;          // skala punktow i grubosc laczników
 
+    [Header("Material wê¿a (do renderu rury)")]
+    [SerializeField] private Material materialWeza;
+    public Material MaterialWeza => materialWeza;
+
+
     [Header("Fizyka")]
     [SerializeField, Min(1f)] private float springForce = 900f;
     [SerializeField, Min(0f)] private float damper = 90f;
@@ -401,6 +406,9 @@ public class WazStrazacki : MonoBehaviour
         temp.transform.SetParent(transform, true);
         return temp;
     }
+
+    public IReadOnlyList<Transform> PunktyDoRenderu => points;
+
 
     private void DestroyImmediateSafe(Object obj)
     {

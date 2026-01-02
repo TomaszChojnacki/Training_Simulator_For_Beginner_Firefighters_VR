@@ -12,35 +12,45 @@ public class StrumienWody : MonoBehaviour
     [SerializeField, Range(0f, 1f)] private float progTriggera = 0.2f;
 
     [Header("Trigger (Input System / XRI)")]
-    [Tooltip("Podepnij: XRI LeftHand Interaction / Activate")]
     [SerializeField] private InputActionProperty activateLeft;
-
-    [Tooltip("Podepnij: XRI RightHand Interaction / Activate")]
     [SerializeField] private InputActionProperty activateRight;
 
     [Header("Anchor / Muzzle")]
-    [Tooltip("Punkt wylotu wody (oœ Z do przodu).")]
     [SerializeField] private Transform waterMuzzle;
 
-    [Header("Prefaby efektów")]
-    [Tooltip("Prefab strumienia wody (ParticleSystem). NIE obiekt ze sceny - prefab!")]
+    [Header("Prefaby efektow")]
     [SerializeField] private ParticleSystem waterPrefab;
-
-    [Tooltip("Prefab rozbryzgu (ParticleSystem).")]
     [SerializeField] private ParticleSystem splashPrefab;
 
-    [Header("Zasiêg i trafienie")]
+    [Header("Zasieg i trafienie")]
     [SerializeField, Min(0.1f)] private float zasieg = 18f;
     [SerializeField] private LayerMask maskaTrafien = ~0;
     [SerializeField, Min(0f)] private float sila = 0f;
 
-    [Header("Stabilizacja splash (¿eby nie migota³)")]
+    [Header("Stabilizacja splash")]
     [SerializeField, Min(0f)] private float progRuchuHit = 0.01f;
     [SerializeField, Min(0f)] private float offsetOdPowierzchni = 0.01f;
 
-    [Header("Zabezpieczenie na szybkie puszczenie/wciœniêcie")]
-    [Tooltip("Przez ile sekund po starcie lania nie pokazujemy splasha (¿eby nie by³o sytuacji 'sam splash').")]
+    [Header("Zabezpieczenie na szybkie puszczenie/wcisniecie")]
     [SerializeField, Min(0f)] private float splashDelayPoWlaczeniu = 0.03f;
+
+    // Blokada wody do przycisku na pojezdzie
+    [Header("Cisnienie (panel ON/OFF)")]
+    [SerializeField] private bool cisnienieWlaczone = false;
+
+    public bool CisnienieWlaczone
+    {
+        get => cisnienieWlaczone;
+        set
+        {
+            cisnienieWlaczone = value;
+
+            // jesli panel wylaczy cisnienie, wylacz wode
+            if (!cisnienieWlaczone)
+                WylaczNatychmiast(true);
+        }
+    }
+
 
     // stan
     private bool trzymane;
@@ -93,6 +103,20 @@ public class StrumienWody : MonoBehaviour
 
     private void Update()
     {
+        // BLOKADA WODY jesli cisnienie OFF
+        if (!cisnienieWlaczone)
+        {
+            if (leje) WylaczNatychmiast(false);
+            return;
+        }
+
+        if (wymagajTrzymania && !trzymane)
+        {
+            if (leje) Wylacz();
+            return;
+        }
+        // ----- blokoda koniec
+
         if (wymagajTrzymania && !trzymane)
         {
             if (leje) Wylacz();

@@ -3728,6 +3728,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1942069119356117803}
+  - component: {fileID: 3456210152649887067}
   m_Layer: 0
   m_Name: Cisnienie
   m_TagString: Untagged
@@ -3752,6 +3753,22 @@ Transform:
   - {fileID: 4048171171538792814}
   m_Father: {fileID: 6211095409690888644}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3456210152649887067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7946248992874727512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 318142b6e7a29d04f9b9ce11ae146cb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  przycisk: {fileID: 2469245003986996535}
+  napisOnOff: {fileID: 1761392836405050599}
+  strumienWody: {fileID: 8549631472324297891}
+  startOn: 0
 --- !u!1 &8118531061900762136
 GameObject:
   m_ObjectHideFlags: 0
@@ -4317,6 +4334,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76f3439a0ae796e4b81bee3f91f888ee, type: 3}
+--- !u!114 &2469245003986996535 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5419331889293473514, guid: 76f3439a0ae796e4b81bee3f91f888ee, type: 3}
+  m_PrefabInstance: {fileID: 7598083416583912413}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &2798784861929126756 stripped
 BoxCollider:
   m_CorrespondingSourceObject: {fileID: 5739442573886587065, guid: 76f3439a0ae796e4b81bee3f91f888ee, type: 3}
@@ -4702,3 +4730,4 @@ MonoBehaviour:
   progRuchuHit: 0.01
   offsetOdPowierzchni: 0.01
   splashDelayPoWlaczeniu: 0.03
+  cisnienieWlaczone: 0

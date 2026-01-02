@@ -14,6 +14,9 @@ public class SystemOgniaManager : MonoBehaviour
     [Header("Koniec zadania")]
     [SerializeField] private int sceneIndexWhenDone = 0;
 
+    [SerializeField] private FireAudioManager audioManager;
+
+
     private readonly HashSet<FirePoint> active = new();
     private bool sceneLoaded;
 
@@ -51,7 +54,7 @@ public class SystemOgniaManager : MonoBehaviour
             FirePoint fp = child.GetComponent<FirePoint>();
             if (!fp) fp = child.gameObject.AddComponent<FirePoint>();
 
-            // Dodaj prefab ognia
+            // Dodawanie prefaba ognia
             var fireGO = Instantiate(prefabOgnia, child);
             fireGO.name = "VFX_Ogien";
             fireGO.transform.localPosition = Vector3.zero;
@@ -61,6 +64,9 @@ public class SystemOgniaManager : MonoBehaviour
             active.Add(fp);
             fp.Init(this, fireGO.transform);
 
+            if (audioManager) audioManager.Register(fp);
+
+
             if (!child.GetComponent<Collider>())
                 Debug.LogWarning($"[SystemOgnia] Punkt {child.name} nie ma Collidera.");
         }
@@ -68,6 +74,10 @@ public class SystemOgniaManager : MonoBehaviour
 
     public void NotifyExtinguished(FirePoint fp)
     {
+
+        if (audioManager) audioManager.Unregister(fp);
+
+
         if (!fp) return;
 
         active.Remove(fp);

@@ -38,6 +38,14 @@ public class StrumienWody : MonoBehaviour
     [Header("Cisnienie (panel ON/OFF)")]
     [SerializeField] private bool cisnienieWlaczone = false;
 
+    [Header("Dzwiek wody")]
+    [SerializeField] private AudioSource audioWody;
+    [SerializeField] private AudioClip dzwiekWodyLoop;
+    [SerializeField, Range(0f, 1f)] private float glosnoscWody = 0.7f;
+    [SerializeField] private float predkoscWygaszania = 8f;
+
+
+
     public bool CisnienieWlaczone
     {
         get => cisnienieWlaczone;
@@ -45,7 +53,7 @@ public class StrumienWody : MonoBehaviour
         {
             cisnienieWlaczone = value;
 
-            // jesli panel wylaczy cisnienie, wylacz wode
+            // jesli panel wylaczy cisnienie wylacz wode
             if (!cisnienieWlaczone)
                 WylaczNatychmiast(true);
         }
@@ -99,6 +107,7 @@ public class StrumienWody : MonoBehaviour
     private void Start()
     {
         WylaczNatychmiast(true);
+        UstawAudioWody();
     }
 
     private void Update()
@@ -134,12 +143,15 @@ public class StrumienWody : MonoBehaviour
         {
             AktualizujWaterNaMuzzle();
 
-            // Dopiero po chwili od startu wody jest mozliwosc na splash,
+            // Dopiero po chwili od startu wody jest mozliwosc na splash
             if (Time.time >= blokujSplashDoCzasu)
                 AktualizujTrafienieISplash();
             else
                 UkryjSplash();
         }
+
+        AktualizujDzwiekWody();
+
     }
 
     private float ReadFloat(InputActionProperty prop)
@@ -183,6 +195,7 @@ public class StrumienWody : MonoBehaviour
 
             waterInstance.Play(true);
         }
+        WlaczDzwiekWody();
 
         // Na start lania nie pokazuje splasha dopoki nie ma swiezego hita
         UkryjSplash();
@@ -197,6 +210,7 @@ public class StrumienWody : MonoBehaviour
         UkryjSplash();
         mamHit = false;
     }
+
 
     private void WylaczNatychmiast(bool clear)
     {
@@ -220,6 +234,13 @@ public class StrumienWody : MonoBehaviour
     {
         if (!waterInstance || !waterMuzzle) return;
         waterInstance.transform.SetPositionAndRotation(waterMuzzle.position, waterMuzzle.rotation);
+
+        if (audioWody && waterMuzzle)
+        {
+            audioWody.transform.position = waterMuzzle.position;
+            audioWody.transform.rotation = waterMuzzle.rotation;
+        }
+
     }
 
     private void AktualizujTrafienieISplash()
@@ -284,4 +305,50 @@ public class StrumienWody : MonoBehaviour
         if (splashInstance && splashInstance.isPlaying)
             splashInstance.Stop(true, ParticleSystemStopBehavior.StopEmitting);
     }
+
+    private void UstawAudioWody()
+    {
+        if (!audioWody)
+            audioWody = GetComponent<AudioSource>();
+
+        if (!audioWody)
+            audioWody = gameObject.AddComponent<AudioSource>();
+
+        audioWody.playOnAwake = false;
+        audioWody.loop = true;
+        audioWody.spatialBlend = 1f;   // dzwiek 3D
+        audioWody.dopplerLevel = 0f;
+        audioWody.volume = 0f;
+
+        if (dzwiekWodyLoop)
+            audioWody.clip = dzwiekWodyLoop;
+    }
+
+    private void WlaczDzwiekWody()
+    {
+        if (!audioWody || !audioWody.clip) return;
+
+        if (!audioWody.isPlaying)
+            audioWody.Play();
+    }
+
+    private void AktualizujDzwiekWody()
+    {
+        if (!audioWody) return;
+
+        float docelowaGlosnosc = leje ? glosnoscWody : 0f;
+
+        audioWody.volume = Mathf.MoveTowards(
+            audioWody.volume,
+            docelowaGlosnosc,
+            predkoscWygaszania * Time.deltaTime
+        );
+
+        // Gdy ucichnie i nie leje sie woda to -- zatrzyma AudioSource
+        if (!leje && audioWody.volume <= 0.01f && audioWody.isPlaying)
+            audioWody.Stop();
+    }
+
+
+
 }

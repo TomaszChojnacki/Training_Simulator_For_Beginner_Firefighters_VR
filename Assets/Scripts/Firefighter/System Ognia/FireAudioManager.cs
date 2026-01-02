@@ -4,8 +4,8 @@ using UnityEngine;
 public class FireAudioManager : MonoBehaviour
 {
     [Header("Referencje")]
-    [SerializeField] private Transform gracz;           // np. Main Camera
-    [SerializeField] private AudioClip fireLoop;        // clip ognia (loop)
+    [SerializeField] private Transform gracz;
+    [SerializeField] private AudioClip fireLoop;
 
     [Header("èrÛd≥a düwiÍku (dok≥adnie 2)")]
     [SerializeField] private AudioSource sourceA;
@@ -19,7 +19,7 @@ public class FireAudioManager : MonoBehaviour
     [SerializeField] private bool volumeOdIntensywnosci = true;
 
     [Header("Wyg≥adzanie prze≥πczeÒ (fade)")]
-    [SerializeField, Min(0f)] private float fadeSpeed = 8f; // im wiÍksze, tym szybciej
+    [SerializeField, Min(0f)] private float fadeSpeed = 8f; // im wieksze tym szybciej
 
     private readonly List<FirePoint> fires = new();
 
@@ -60,7 +60,7 @@ public class FireAudioManager : MonoBehaviour
     {
         if (!gracz) return;
 
-        // regularny update wyboru najbliøszych
+        // regularny update wyboru najblizszych
         timer -= Time.deltaTime;
         if (timer <= 0f)
         {
@@ -69,7 +69,7 @@ public class FireAudioManager : MonoBehaviour
             FindTwoNearest(gracz.position, out nearest1, out nearest2);
         }
 
-        // ustawienia ürÛde≥ (pozycja + g≥oúnoúÊ z fade)
+        // ustawienia zrodel (pozycja + g≥osnosc z fade)
         UpdateSource(sourceA, nearest1);
         UpdateSource(sourceB, nearest2);
     }
@@ -122,10 +122,10 @@ public class FireAudioManager : MonoBehaviour
             return;
         }
 
-        // pozycja düwiÍku = pozycja ognia
+        // pozycja dzwieku = pozycja ognia
         s.transform.position = target.transform.position;
 
-        // docelowa g≥oúnoúÊ
+        // docelowa gsosnosc
         float v = baseVolume;
         if (volumeOdIntensywnosci) v *= Mathf.Clamp01(target.intensity);
 

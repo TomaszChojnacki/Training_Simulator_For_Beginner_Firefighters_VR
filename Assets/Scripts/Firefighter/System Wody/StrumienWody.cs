@@ -246,6 +246,10 @@ public class StrumienWody : MonoBehaviour
 
             if (sila > 0f && hit.rigidbody != null)
                 hit.rigidbody.AddForceAtPosition(waterMuzzle.forward * sila, hit.point, ForceMode.Force);
+
+            var fire = hit.collider.GetComponentInParent<FirePoint>();
+            if (fire != null)
+                fire.ApplyWater(Time.deltaTime);
         }
         else
         {

@@ -5705,6 +5705,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1244677957548289717, guid: 077413f1b7549374c8d3c20d0c3f2641, type: 3}
+      propertyPath: gracz
+      value: 
+      objectReference: {fileID: 4301655065052648419}
     - target: {fileID: 4321155817229985670, guid: 077413f1b7549374c8d3c20d0c3f2641, type: 3}
       propertyPath: m_Name
       value: Fire_Truck_PSK

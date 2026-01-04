@@ -22,6 +22,15 @@ public class StrumienWody : MonoBehaviour
     [SerializeField] private ParticleSystem waterPrefab;
     [SerializeField] private ParticleSystem splashPrefab;
 
+    [Header("Skracanie widocznego strumienia (¿eby nie przechodzi³ przez œciany)")]
+    [SerializeField, Min(0.1f)] private float minimalnyZasiegWizualny = 0.5f;
+    [SerializeField, Min(0.1f)] private float maksymalnyZasiegWizualny = 25f;
+    [SerializeField, Min(0f)] private float zapasOdSplasha = 0.05f; // ma³y margines, ¿eby nie "wchodzi³o" w œcianê
+
+    private float domyslnyLifetime = -1f;
+    private float domyslnaPredkosc = -1f;
+
+
     [Header("Zasieg i trafienie")]
     [SerializeField, Min(0.1f)] private float zasieg = 18f;
     [SerializeField] private LayerMask maskaTrafien = ~0;
@@ -126,12 +135,6 @@ public class StrumienWody : MonoBehaviour
         }
         // ----- blokoda koniec
 
-        if (wymagajTrzymania && !trzymane)
-        {
-            if (leje) Wylacz();
-            return;
-        }
-
         float tL = ReadFloat(activateLeft);
         float tR = ReadFloat(activateRight);
         bool triggerOk = Mathf.Max(tL, tR) > progTriggera;
@@ -194,6 +197,9 @@ public class StrumienWody : MonoBehaviour
             waterInstance.Clear(true);
 
             waterInstance.Play(true);
+            ZapamietajParametryWater();
+            UstawDlugoscStrumienia(maksymalnyZasiegWizualny);
+
         }
         WlaczDzwiekWody();
 
@@ -205,7 +211,10 @@ public class StrumienWody : MonoBehaviour
     {
         leje = false;
         if (waterInstance)
+        {
+            UstawDlugoscStrumienia(maksymalnyZasiegWizualny);
             waterInstance.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        }
 
         UkryjSplash();
         mamHit = false;
@@ -251,6 +260,8 @@ public class StrumienWody : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, zasieg, maskaTrafien, QueryTriggerInteraction.Ignore))
         {
+            UstawDlugoscStrumienia(hit.distance - zapasOdSplasha);
+
             Vector3 p = hit.point + hit.normal * offsetOdPowierzchni;
 
             if (!mamHit || (p - ostatniHitPoint).sqrMagnitude > (progRuchuHit * progRuchuHit))
@@ -274,6 +285,8 @@ public class StrumienWody : MonoBehaviour
         }
         else
         {
+            UstawDlugoscStrumienia(maksymalnyZasiegWizualny);
+
             mamHit = false;
             UkryjSplash();
         }
@@ -347,6 +360,48 @@ public class StrumienWody : MonoBehaviour
         // Gdy ucichnie i nie leje sie woda to -- zatrzyma AudioSource
         if (!leje && audioWody.volume <= 0.01f && audioWody.isPlaying)
             audioWody.Stop();
+    }
+
+    private void ZapamietajParametryWater()
+    {
+        if (!waterInstance) return;
+        if (domyslnyLifetime > 0f && domyslnaPredkosc > 0f) return; // ju¿ zapamiêtane
+
+        var main = waterInstance.main;
+
+        // UWAGA: najlepiej ustaw w prefabie sta³e StartSpeed i StartLifetime
+        domyslnyLifetime = main.startLifetime.constant;
+        domyslnaPredkosc = main.startSpeed.constant;
+
+        if (domyslnaPredkosc < 0.01f)
+            domyslnaPredkosc = 0.01f;
+
+        // Dla bezpieczeñstwa – ¿eby maksymalny zasiêg wizualny nie by³ wiêkszy ni¿ zasieg raycastu
+        if (maksymalnyZasiegWizualny < zasieg)
+            maksymalnyZasiegWizualny = zasieg;
+    }
+
+    private void UstawDlugoscStrumienia(float odleglosc)
+    {
+        if (!waterInstance) return;
+
+        ZapamietajParametryWater();
+
+        odleglosc = Mathf.Clamp(odleglosc, minimalnyZasiegWizualny, maksymalnyZasiegWizualny);
+
+        var main = waterInstance.main;
+
+        float speed = main.startSpeed.constant;
+        if (speed < 0.01f) speed = domyslnaPredkosc;
+        if (speed < 0.01f) speed = 0.01f;
+
+        // lifetime = dystans / predkosc
+        float lifetime = odleglosc / speed;
+
+        // bezpieczny clamp, ¿eby nie robiæ absurdalnych wartoœci
+        lifetime = Mathf.Clamp(lifetime, 0.02f, 10f);
+
+        main.startLifetime = lifetime;
     }
 
 

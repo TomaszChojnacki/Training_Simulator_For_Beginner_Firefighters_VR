@@ -2,89 +2,83 @@ using UnityEngine;
 
 public class AparatTlenowyManager : MonoBehaviour
 {
-    [Header("Referencje")]
+    [Header("Reference")]
     [SerializeField] private PlayerTlenZdrowie playerSystem;
 
     [Header("Zestawy w scenie")]
-    [SerializeField] private GameObject zestaw1; // Zestaw_1
-    [SerializeField] private GameObject zestaw2; // Zestaw_2
+    [SerializeField] private GameObject zestaw1;
+    [SerializeField] private GameObject zestaw2;
 
-    [Header("Ikony UI (opcjonalnie, moze byc tez tylko w PlayerTlenZdrowie)")]
+    [Header("Ikony UI (pobrane z PlayerTlenZdrowie)")]
     [SerializeField] private GameObject zAparatemText;
     [SerializeField] private GameObject bezAparatuText;
 
-    private GameObject ostatnioZabrany;
+    private AparatZestaw zestaw1Data;
+    private AparatZestaw zestaw2Data;
 
-    private void OnEnable()
+    private void Awake()
     {
-        if (playerSystem != null)
-            playerSystem.OnPowietrzeWyczerpaneZAparatem += WymusPrzelaczNaBezAparatu;
+        if (!playerSystem)
+            playerSystem = FindFirstObjectByType<PlayerTlenZdrowie>();
+
+        if (zestaw1) zestaw1Data = zestaw1.GetComponent<AparatZestaw>();
+        if (zestaw2) zestaw2Data = zestaw2.GetComponent<AparatZestaw>();
+
+        if (zestaw1 && !zestaw1Data)
+            Debug.LogWarning("[AparatTlenowyManager] Zestaw_1 nie ma komponentu AparatZestaw.");
+
+        if (zestaw2 && !zestaw2Data)
+            Debug.LogWarning("[AparatTlenowyManager] Zestaw_2 nie ma komponentu AparatZestaw.");
+
+        OdswiezUIIkon();
     }
 
-    private void OnDisable()
+    public void KlikZestaw1()
     {
-        if (playerSystem != null)
-            playerSystem.OnPowietrzeWyczerpaneZAparatem -= WymusPrzelaczNaBezAparatu;
+        ToggleZestaw(zestaw1, zestaw1Data);
     }
 
-    public void ToggleAparat()
+    public void KlikZestaw2()
     {
-        if (!playerSystem) return;
+        ToggleZestaw(zestaw2, zestaw2Data);
+    }
 
-        // jeœli juz ma aparat -> zdejmij (i odloz ostatnio zabrany zestaw z powrotem)
-        if (playerSystem.MaAparat)
+    private void ToggleZestaw(GameObject obiektZestawu, AparatZestaw data)
+    {
+        if (!playerSystem || !obiektZestawu || data == null)
+            return;
+
+        // Jesli gracz ma ju¿ ten zestaw -- zdejmij (i pokaz go w scenie)
+        if (playerSystem.AktualnyZestaw == data)
         {
-            playerSystem.UstawTrybAparatu(false);
-            PokazOstatniZestaw();
-            OdswiezIkony();
+            playerSystem.ZdejmijZestaw();
+            obiektZestawu.SetActive(true);
+            OdswiezUIIkon();
             return;
         }
 
-        // jeœli nie ma aparatu -> spróbuj "wzi¹æ" zestaw
-        GameObject doZabrania = ZnajdzDostepnyZestaw();
-        if (doZabrania == null)
+        // Jesli gracz ma inny zestaw -- zdejmij go i pokaz go w scenie
+        if (playerSystem.AktualnyZestaw != null)
         {
-            // brak zestawow - zostaje bez aparatu
-            playerSystem.UstawTrybAparatu(false);
-            OdswiezIkony();
-            return;
+            AparatZestaw stary = playerSystem.AktualnyZestaw;
+            playerSystem.ZdejmijZestaw();
+
+            // pokaz z powrotem wlasciwy obiekt starego zestawu
+            if (zestaw1Data == stary && zestaw1) zestaw1.SetActive(true);
+            if (zestaw2Data == stary && zestaw2) zestaw2.SetActive(true);
         }
 
-        // "zabieramy" (znika ze sceny)
-        ostatnioZabrany = doZabrania;
-        doZabrania.SetActive(false);
+        playerSystem.ZalozZestaw(data);
+        obiektZestawu.SetActive(false);
 
-        playerSystem.UstawTrybAparatu(true);
-        OdswiezIkony();
+        OdswiezUIIkon();
     }
 
-    private GameObject ZnajdzDostepnyZestaw()
+    private void OdswiezUIIkon()
     {
-        if (zestaw1 && zestaw1.activeInHierarchy) return zestaw1;
-        if (zestaw2 && zestaw2.activeInHierarchy) return zestaw2;
-        return null;
-    }
+        bool maAparat = playerSystem != null && playerSystem.AktualnyZestaw != null;
 
-    private void PokazOstatniZestaw()
-    {
-        if (ostatnioZabrany != null)
-            ostatnioZabrany.SetActive(true);
-
-        ostatnioZabrany = null;
-    }
-
-    private void WymusPrzelaczNaBezAparatu()
-    {
-        // Gdy tlen spadnie do 0 w strefie – gracz ma automatycznie przejœæ w tryb bez aparatu
-        // (zestaw zostaje "zu¿yty", czyli nie wraca automatycznie)
-        OdswiezIkony();
-    }
-
-    private void OdswiezIkony()
-    {
-        bool ma = playerSystem != null && playerSystem.MaAparat;
-
-        if (zAparatemText) zAparatemText.SetActive(ma);
-        if (bezAparatuText) bezAparatuText.SetActive(!ma);
+        if (zAparatemText) zAparatemText.SetActive(maAparat);
+        if (bezAparatuText) bezAparatuText.SetActive(!maAparat);
     }
 }

@@ -3,12 +3,11 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider))]
 public class StrefaTlenowaOverlap : MonoBehaviour
 {
-    [Header("Kogo wykrywamy")]
-    [SerializeField] private Transform playerRoot; // XR Origin (VR) albo Camera Offset
+    [Header("Wykrywanie gracz")]
+    [SerializeField] private Transform playerRoot;
     [SerializeField] private PlayerTlenZdrowie playerSystem;
 
     [Header("Warstwy gracza (dla OverlapBox)")]
-    [Tooltip("Ustaw na warstwê gracza, np. Player. Mo¿e byæ te¿ Everything, ale lepiej zawêziæ.")]
     [SerializeField] private LayerMask maskaGracza = ~0;
 
     [Header("Diagnostyka")]
@@ -20,9 +19,6 @@ public class StrefaTlenowaOverlap : MonoBehaviour
     private void Awake()
     {
         box = GetComponent<BoxCollider>();
-
-        // OverlapBox nie wymaga triggera, ale mo¿esz zostawiæ trigger jak chcesz.
-        // box.isTrigger = true;
 
         if (!playerSystem)
             playerSystem = FindFirstObjectByType<PlayerTlenZdrowie>();
@@ -49,7 +45,7 @@ public class StrefaTlenowaOverlap : MonoBehaviour
 
     private bool CzyPlayerWBoxie()
     {
-        // œwiatowe parametry boxa
+        // Parametry boxa
         Vector3 centerWorld = transform.TransformPoint(box.center);
         Vector3 halfExtents = Vector3.Scale(box.size * 0.5f, transform.lossyScale);
         Quaternion rot = transform.rotation;
@@ -57,7 +53,7 @@ public class StrefaTlenowaOverlap : MonoBehaviour
         // sprawdzamy czy w boxie jest jakikolwiek collider z warstwy gracza
         Collider[] hits = Physics.OverlapBox(centerWorld, halfExtents, rot, maskaGracza, QueryTriggerInteraction.Ignore);
 
-        // i upewniamy siê, ¿e to faktycznie coœ z XR Origin (dziecko/rodzic)
+        // upewnienie sie ze to z XR Origin (dziecko/rodzic)
         for (int i = 0; i < hits.Length; i++)
         {
             if (!hits[i]) continue;

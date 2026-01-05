@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-
 public class PlayerTlenZdrowie : MonoBehaviour
 {
     [Header("UI")]
@@ -16,21 +15,39 @@ public class PlayerTlenZdrowie : MonoBehaviour
     [SerializeField, Min(1f)] private float maxZdrowie = 100f;
 
     [Header("Spadek tlenu w strefie (na sekunde)")]
-    [SerializeField, Min(0f)] private float spadekBezAparatu = 18f;   // szybko
-    [SerializeField, Min(0f)] private float spadekZAparatem = 5f;     // wolno
+    [SerializeField, Min(0f)] private float spadekBezAparatu = 18f;
+    [SerializeField, Min(0f)] private float spadekZAparatem = 0.217f;
+
+    // Butla 100 bar -- 7,4 min 
+    // SpadekZAparatem = 0.217 bar/s
+    // Gwizdek = 25 bar start koniec przy 22.5 bara
+    // Gwizdek ----------
+    [Header("Spadek tlenu Gwizdek")]
+    [SerializeField] private float progGwizdka = 25f;
+    [SerializeField] private float koniecGwizdka = 23.5f;
+
+    [Header("Dzwiek gwizdka")]
+    [SerializeField] private AudioSource audioGwizdka;
+    [SerializeField] private AudioClip dzwiekGwizdka;
+    [SerializeField, Range(0f, 1f)] private float glosnoscGwizdka = 0.9f;
+    private bool gwizdekAktywny = false;
+    // -------
 
     [Header("Spadek zdrowia gdy tlen = 0 (na sekunde)")]
-    [SerializeField, Min(0f)] private float spadekZdrowia = 10f;      // taki sam dla obu wariantow
+    [SerializeField, Min(0f)] private float spadekZdrowia = 10f;
 
     [Header("Regeneracja poza strefa (na sekunde)")]
-    [SerializeField, Min(0f)] private float regenPowietrza = 20f;     // wraca do max
-    [SerializeField, Min(0f)] private float regenZdrowia = 20f;       // wraca do max
+    [SerializeField, Min(0f)] private float regenPowietrza = 20f;
+    [SerializeField, Min(0f)] private float regenZdrowia = 20f;
+
+    [Header("Zestaw aparatu (zapis tlenu)")]
+    [SerializeField] private float maxPowietrzeBezAparatu = 100f;
+    private AparatZestaw aktualnyZestaw;
 
     [Header("Koniec gry")]
     [SerializeField] private int scenaPoSmierciBuildIndex = 0;
     private bool zaladowanoScene = false;
 
-    // stan
     private float powietrze;
     private float zdrowie;
 
@@ -42,14 +59,14 @@ public class PlayerTlenZdrowie : MonoBehaviour
     public float Powietrze01 => Mathf.Clamp01(powietrze / maxPowietrze);
     public float Zdrowie01 => Mathf.Clamp01(zdrowie / maxZdrowie);
 
-    // event dla managera aparatu (gdy tlen sie skonczyl i trzeba przejsc na "bez aparatu")
-    public System.Action OnPowietrzeWyczerpaneZAparatem;
-
     private void Start()
     {
+        maxPowietrze = maxPowietrzeBezAparatu;
         powietrze = maxPowietrze;
         zdrowie = maxZdrowie;
-        UstawTrybAparatu(false); // start: bez aparatu
+
+        UstawTrybAparatu(false);
+        UstawGwizdek();
         OdswiezUI();
     }
 
@@ -59,35 +76,52 @@ public class PlayerTlenZdrowie : MonoBehaviour
 
         if (wStrefie)
         {
-            // tlen spada tylko w strefie
+            // Tlen spada tylko w strefie
             float rate = maAparat ? spadekZAparatem : spadekBezAparatu;
             powietrze = Mathf.Max(0f, powietrze - rate * dt);
 
-            // gdy tlen = 0 w strefie -> zdrowie spada zawsze tak samo
+            // Zapis do butli gdy mamy aparat
+            if (maAparat && aktualnyZestaw != null)
+                aktualnyZestaw.AktualnyTlen = powietrze;
+
+            bool wPrzedzialeGwizdka = maAparat && powietrze <= progGwizdka && powietrze >= koniecGwizdka;
+
+            if (wPrzedzialeGwizdka)
+            {
+                if (!gwizdekAktywny)
+                {
+                    if (audioGwizdka && audioGwizdka.clip)
+                        audioGwizdka.Play();
+
+                    gwizdekAktywny = true;
+                }
+            }
+            else
+            {
+                ZatrzymajGwizdek();
+            }
+
+
+            // Zdrowie spada tylko w strefie i tylko gdy tlen = 0
             if (powietrze <= 0f)
             {
                 zdrowie = Mathf.Max(0f, zdrowie - spadekZdrowia * dt);
 
-                // jeœli mial aparat i skonczyl sie tlen -> przelacz na "bez aparatu"
-                if (maAparat)
+                if (zdrowie <= 0f)
                 {
-                    maAparat = false;
-                    OnPowietrzeWyczerpaneZAparatem?.Invoke();
-                    OdswiezIkony();
+                    ZakonczGreIZaladujScene();
+                    return;
                 }
             }
-            if (zdrowie <= 0f)
-            {
-                ZakonczGreIZaladujScene();
-                return;
-            }
-
         }
         else
         {
-            // poza strefa: powietrze i zdrowie wracaja do max w takim samym tempie (wg ustawien)
-            powietrze = Mathf.Min(maxPowietrze, powietrze + regenPowietrza * dt);
+            // Poza strefa zdrowie wraca
             zdrowie = Mathf.Min(maxZdrowie, zdrowie + regenZdrowia * dt);
+
+            // Poza strefa tlen regeneruje sie chyba ze jest butla wtedy pozostaje w 0 jak byla 0
+            if (!maAparat)
+                powietrze = Mathf.Min(maxPowietrze, powietrze + regenPowietrza * dt);
         }
 
         OdswiezUI();
@@ -102,13 +136,6 @@ public class PlayerTlenZdrowie : MonoBehaviour
     {
         maAparat = czyMaAparat;
         OdswiezIkony();
-    }
-
-    public void ResetDoPelna()
-    {
-        powietrze = maxPowietrze;
-        zdrowie = maxZdrowie;
-        OdswiezUI();
     }
 
     private void OdswiezUI()
@@ -136,9 +163,71 @@ public class PlayerTlenZdrowie : MonoBehaviour
 
     private void ZakonczGreIZaladujScene()
     {
+        ZatrzymajGwizdek();
         if (zaladowanoScene) return;
         zaladowanoScene = true;
         SceneManager.LoadScene(scenaPoSmierciBuildIndex);
     }
+
+    public AparatZestaw AktualnyZestaw => aktualnyZestaw;
+
+    public void ZalozZestaw(AparatZestaw zestaw)
+    {
+        aktualnyZestaw = zestaw;
+        UstawTrybAparatu(true);
+
+        maxPowietrze = zestaw.PojemnoscTlenu;
+        powietrze = zestaw.AktualnyTlen;
+
+        // Clamp na wypadek zlych wartosci
+        powietrze = Mathf.Clamp(powietrze, 0f, maxPowietrze);
+
+        OdswiezUI();
+        ZatrzymajGwizdek();
+
+    }
+
+    public void ZdejmijZestaw()
+    {
+
+        // zapisz stan w butli
+        if (aktualnyZestaw != null)
+            aktualnyZestaw.AktualnyTlen = powietrze;
+
+        aktualnyZestaw = null;
+        UstawTrybAparatu(false);
+
+        // clampujemy aktualna wartosc tlenu po zdjeciu
+        maxPowietrze = maxPowietrzeBezAparatu;
+        powietrze = Mathf.Clamp(powietrze, 0f, maxPowietrze);
+
+        OdswiezUI();
+        ZatrzymajGwizdek();
+
+    }
+
+    private void UstawGwizdek()
+    {
+        if (!audioGwizdka)
+            audioGwizdka = gameObject.AddComponent<AudioSource>();
+
+        audioGwizdka.clip = dzwiekGwizdka;
+        audioGwizdka.loop = true;          
+        audioGwizdka.playOnAwake = false;
+        audioGwizdka.spatialBlend = 0f;    
+        audioGwizdka.volume = glosnoscGwizdka;
+    }
+
+    private void ZatrzymajGwizdek()
+    {
+        if (gwizdekAktywny)
+        {
+            if (audioGwizdka.isPlaying)
+                audioGwizdka.Stop();
+
+            gwizdekAktywny = false;
+        }
+    }
+
 
 }

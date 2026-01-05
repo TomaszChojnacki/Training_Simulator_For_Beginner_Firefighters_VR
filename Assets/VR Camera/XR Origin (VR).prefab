@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 6264366569010727765}
   - component: {fileID: 7497252165251233094}
   - component: {fileID: 8004924003105824876}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: XR Origin (VR)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3100,7 +3100,7 @@ GameObject:
   - component: {fileID: 4999841810881452008}
   - component: {fileID: 7329893863089917946}
   - component: {fileID: 6050922070200840016}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4366,7 +4366,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -6070,7 +6070,7 @@ GameObject:
   - component: {fileID: 1389698915368151146}
   - component: {fileID: 994693397014529517}
   - component: {fileID: 538139327135818401}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -7472,6 +7472,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2742312104359957385}
   - {fileID: 2037797905551819564}
   - {fileID: 4330173854224445220}
   - {fileID: 3572837783724436984}
@@ -11630,7 +11631,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -13690,6 +13691,61 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4548640766136027628}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &9083454382101751666
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2742312104359957385}
+  - component: {fileID: 5939019370411743214}
+  m_Layer: 7
+  m_Name: PlayerTlenZdrowie
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2742312104359957385
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9083454382101751666}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3739221015524669987}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5939019370411743214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9083454382101751666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502b5d60d066eaf47bc262aa2a473cda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powietrzeBar: {fileID: 7230707577142802760}
+  zdrowieBar: {fileID: 6199250820188668269}
+  zAparatemText: {fileID: 5569780589475422753}
+  bezAparatuText: {fileID: 5575736514148652139}
+  maxPowietrze: 100
+  maxZdrowie: 100
+  spadekBezAparatu: 18
+  spadekZAparatem: 5
+  spadekZdrowia: 10
+  regenPowietrza: 20
+  regenZdrowia: 20
 --- !u!1 &9097787921198209457
 GameObject:
   m_ObjectHideFlags: 0

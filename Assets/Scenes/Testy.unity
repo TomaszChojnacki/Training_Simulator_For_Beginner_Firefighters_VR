@@ -1130,6 +1130,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: XR Origin (VR)
       objectReference: {fileID: 0}
+    - target: {fileID: 1210083015762238948, guid: b55671841c5ee364398d79aaead38498, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1772697519699794451, guid: b55671841c5ee364398d79aaead38498, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4824528800294182779, guid: b55671841c5ee364398d79aaead38498, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.20399986
@@ -1648,10 +1656,6 @@ PrefabInstance:
       propertyPath: gracz
       value: 
       objectReference: {fileID: 1687107848}
-    - target: {fileID: 2629396300187681810, guid: 077413f1b7549374c8d3c20d0c3f2641, type: 3}
-      propertyPath: m_text
-      value: 100 Bar
-      objectReference: {fileID: 0}
     - target: {fileID: 3072186514160367719, guid: 077413f1b7549374c8d3c20d0c3f2641, type: 3}
       propertyPath: m_Camera
       value: 
@@ -1668,10 +1672,6 @@ PrefabInstance:
       propertyPath: playerSystem
       value: 
       objectReference: {fileID: 1538554430}
-    - target: {fileID: 4227638270646542235, guid: 077413f1b7549374c8d3c20d0c3f2641, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4321155817229985670, guid: 077413f1b7549374c8d3c20d0c3f2641, type: 3}
       propertyPath: m_Name
       value: Fire_Truck_PSK
@@ -1684,22 +1684,6 @@ PrefabInstance:
       propertyPath: playerSystem
       value: 
       objectReference: {fileID: 1538554430}
-    - target: {fileID: 5655582771744715129, guid: 077413f1b7549374c8d3c20d0c3f2641, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5707295114797066212, guid: 077413f1b7549374c8d3c20d0c3f2641, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6067849381761709512, guid: 077413f1b7549374c8d3c20d0c3f2641, type: 3}
-      propertyPath: aktualnyTlen
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 6067849381761709512, guid: 077413f1b7549374c8d3c20d0c3f2641, type: 3}
-      propertyPath: pojemnoscTlenu
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 6204420322255891139, guid: 077413f1b7549374c8d3c20d0c3f2641, type: 3}
       propertyPath: m_Camera
       value: 
@@ -1748,18 +1732,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1884785411}
-    - target: {fileID: 6845621685218308666, guid: 077413f1b7549374c8d3c20d0c3f2641, type: 3}
-      propertyPath: aktualnyTlen
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 6845621685218308666, guid: 077413f1b7549374c8d3c20d0c3f2641, type: 3}
-      propertyPath: pojemnoscTlenu
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 9027970949375993116, guid: 077413f1b7549374c8d3c20d0c3f2641, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

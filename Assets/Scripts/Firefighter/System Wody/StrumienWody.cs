@@ -282,6 +282,10 @@ public class StrumienWody : MonoBehaviour
             var fire = hit.collider.GetComponentInParent<FirePoint>();
             if (fire != null)
                 fire.ApplyWater(Time.deltaTime);
+            var lampa = hit.collider.GetComponentInParent<ElektrycznaLampa>();
+            if (lampa != null)
+                lampa.OnWaterHit(Time.deltaTime);
+
         }
         else
         {
@@ -365,18 +369,16 @@ public class StrumienWody : MonoBehaviour
     private void ZapamietajParametryWater()
     {
         if (!waterInstance) return;
-        if (domyslnyLifetime > 0f && domyslnaPredkosc > 0f) return; // ju¿ zapamiêtane
+        if (domyslnyLifetime > 0f && domyslnaPredkosc > 0f) return; // juz zapamietane
 
         var main = waterInstance.main;
-
-        // UWAGA: najlepiej ustaw w prefabie sta³e StartSpeed i StartLifetime
         domyslnyLifetime = main.startLifetime.constant;
         domyslnaPredkosc = main.startSpeed.constant;
 
         if (domyslnaPredkosc < 0.01f)
             domyslnaPredkosc = 0.01f;
 
-        // Dla bezpieczeñstwa – ¿eby maksymalny zasiêg wizualny nie by³ wiêkszy ni¿ zasieg raycastu
+        // Zeby maksymalny zasieg wizualny nie byl wiekszy niz zasieg raycastu
         if (maksymalnyZasiegWizualny < zasieg)
             maksymalnyZasiegWizualny = zasieg;
     }
@@ -398,7 +400,7 @@ public class StrumienWody : MonoBehaviour
         // lifetime = dystans / predkosc
         float lifetime = odleglosc / speed;
 
-        // bezpieczny clamp, ¿eby nie robiæ absurdalnych wartoœci
+        // bezpieczny clamp, zeby nie robic absurdalnych wartosci
         lifetime = Mathf.Clamp(lifetime, 0.02f, 10f);
 
         main.startLifetime = lifetime;

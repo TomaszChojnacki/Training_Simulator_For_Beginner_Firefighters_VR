@@ -38,7 +38,7 @@ public class PlayerTlenZdrowie : MonoBehaviour
 
     [Header("Regeneracja poza strefa (na sekunde)")]
     [SerializeField, Min(0f)] private float regenPowietrza = 20f;
-    [SerializeField, Min(0f)] private float regenZdrowia = 20f;
+    //[SerializeField, Min(0f)] private float regenZdrowia = 20f;
 
     [Header("Zestaw aparatu (zapis tlenu)")]
     [SerializeField] private float maxPowietrzeBezAparatu = 100f;
@@ -117,7 +117,7 @@ public class PlayerTlenZdrowie : MonoBehaviour
         else
         {
             // Poza strefa zdrowie wraca
-            zdrowie = Mathf.Min(maxZdrowie, zdrowie + regenZdrowia * dt);
+            //zdrowie = Mathf.Min(maxZdrowie, zdrowie + regenZdrowia * dt);
 
             // Poza strefa tlen regeneruje sie chyba ze jest butla wtedy pozostaje w 0 jak byla 0
             if (!maAparat)
@@ -228,6 +228,19 @@ public class PlayerTlenZdrowie : MonoBehaviour
             gwizdekAktywny = false;
         }
     }
+
+    public void DodajObrazenia(float ile)
+    {
+        if (ile <= 0f) return;
+
+        zdrowie = Mathf.Max(0f, zdrowie - ile);
+
+        OdswiezUI();
+
+        if (zdrowie <= 0f)
+            ZakonczGreIZaladujScene();
+    }
+
 
 
 }

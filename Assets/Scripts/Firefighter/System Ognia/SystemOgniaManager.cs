@@ -23,16 +23,16 @@ public class SystemOgniaManager : MonoBehaviour
     private void Start()
     {
         ZainstalujOgnieNaPunktach();
-        LogCount();
+        //LogCount();
     }
 
     private void ZainstalujOgnieNaPunktach()
     {
-        if (!prefabOgnia)
-        {
-            Debug.LogWarning("[SystemOgnia] Brak prefabOgnia.");
-            return;
-        }
+        //if (!prefabOgnia)
+        //{
+        //    Debug.LogWarning("[SystemOgnia] Brak prefabOgnia.");
+        //    return;
+        //}
 
         foreach (Transform child in transform)
         {
@@ -67,8 +67,8 @@ public class SystemOgniaManager : MonoBehaviour
             if (audioManager) audioManager.Register(fp);
 
 
-            if (!child.GetComponent<Collider>())
-                Debug.LogWarning($"[SystemOgnia] Punkt {child.name} nie ma Collidera.");
+            //if (!child.GetComponent<Collider>())
+            //    Debug.LogWarning($"[SystemOgnia] Punkt {child.name} nie ma Collidera.");
         }
     }
 
@@ -81,18 +81,18 @@ public class SystemOgniaManager : MonoBehaviour
         if (!fp) return;
 
         active.Remove(fp);
-        LogCount();
+        //LogCount();
 
         if (!sceneLoaded && active.Count == 0)
         {
             sceneLoaded = true;
-            Debug.Log("[SystemOgnia] Wszystkie punkty ognia ugaszone. £adujê scenê 0.");
+            //Debug.Log("[SystemOgnia] Wszystkie punkty ognia ugaszone. £adujê scenê 0.");
             SceneManager.LoadScene(sceneIndexWhenDone);
         }
     }
 
-    private void LogCount()
-    {
-        Debug.Log($"[SystemOgnia] Pozosta³o punktów ognia: {active.Count}");
-    }
+    //private void LogCount()
+    //{
+    //    Debug.Log($"[SystemOgnia] Pozosta³o punktów ognia: {active.Count}");
+    //}
 }

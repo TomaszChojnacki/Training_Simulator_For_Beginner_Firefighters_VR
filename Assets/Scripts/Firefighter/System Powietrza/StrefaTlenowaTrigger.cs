@@ -10,8 +10,8 @@ public class StrefaTlenowaOverlap : MonoBehaviour
     [Header("Warstwy gracza (dla OverlapBox)")]
     [SerializeField] private LayerMask maskaGracza = ~0;
 
-    [Header("Diagnostyka")]
-    [SerializeField] private bool loguj = true;
+    //[Header("Diagnostyka")]
+    //[SerializeField] private bool loguj = true;
 
     private BoxCollider box;
     private bool bylWStrefie;
@@ -38,8 +38,8 @@ public class StrefaTlenowaOverlap : MonoBehaviour
             bylWStrefie = jestWStrefie;
             playerSystem.UstawWStrefie(jestWStrefie);
 
-            if (loguj)
-                Debug.Log(jestWStrefie ? "[StrefaTlenu] ENTER (OverlapBox)" : "[StrefaTlenu] EXIT (OverlapBox)");
+            //if (loguj)
+            //    Debug.Log(jestWStrefie ? "[StrefaTlenu] ENTER (OverlapBox)" : "[StrefaTlenu] EXIT (OverlapBox)");
         }
     }
 

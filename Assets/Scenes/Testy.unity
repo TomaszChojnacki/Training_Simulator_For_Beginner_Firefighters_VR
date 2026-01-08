@@ -1656,6 +1656,10 @@ PrefabInstance:
       propertyPath: gracz
       value: 
       objectReference: {fileID: 1687107848}
+    - target: {fileID: 1565857813288015913, guid: 077413f1b7549374c8d3c20d0c3f2641, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1884785411}
     - target: {fileID: 3072186514160367719, guid: 077413f1b7549374c8d3c20d0c3f2641, type: 3}
       propertyPath: m_Camera
       value: 
@@ -1672,6 +1676,10 @@ PrefabInstance:
       propertyPath: playerSystem
       value: 
       objectReference: {fileID: 1538554430}
+    - target: {fileID: 4205386574694580723, guid: 077413f1b7549374c8d3c20d0c3f2641, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1884785411}
     - target: {fileID: 4321155817229985670, guid: 077413f1b7549374c8d3c20d0c3f2641, type: 3}
       propertyPath: m_Name
       value: Fire_Truck_PSK
@@ -1729,6 +1737,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6702440623838128275, guid: 077413f1b7549374c8d3c20d0c3f2641, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1884785411}
+    - target: {fileID: 6729096362401727121, guid: 077413f1b7549374c8d3c20d0c3f2641, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1884785411}

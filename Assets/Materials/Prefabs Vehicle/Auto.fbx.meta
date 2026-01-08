@@ -1,29 +1,9 @@
 fileFormatVersion: 2
-guid: 8a03d7631e4340f4ebea96bacd1e2471
+guid: 7b8aeefa826187945bbbc33f2f07aee4
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Ambulance_Optics
-    second: {fileID: 2100000, guid: 8ed3f7e18a6ea4828887e9fdfad78611, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Firetruck_Base
-    second: {fileID: 2100000, guid: a2bc6fa234f1d465ca126096f91b800a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Firetruck_Decals
-    second: {fileID: 2100000, guid: 1edfba71443164c44b264072721a8d5b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Firetruck_Glass
-    second: {fileID: 2100000, guid: a12bf4d562e494ab49c7963eabb122bb, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

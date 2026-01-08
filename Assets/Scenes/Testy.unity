@@ -153,6 +153,93 @@ Transform:
   - {fileID: 1824871437}
   m_Father: {fileID: 1410418202}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &191861063
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 346afc8dfa34d8e47823b87b9ccc0731, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 346afc8dfa34d8e47823b87b9ccc0731, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 346afc8dfa34d8e47823b87b9ccc0731, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 346afc8dfa34d8e47823b87b9ccc0731, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 346afc8dfa34d8e47823b87b9ccc0731, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 346afc8dfa34d8e47823b87b9ccc0731, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 346afc8dfa34d8e47823b87b9ccc0731, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 346afc8dfa34d8e47823b87b9ccc0731, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 346afc8dfa34d8e47823b87b9ccc0731, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 346afc8dfa34d8e47823b87b9ccc0731, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 346afc8dfa34d8e47823b87b9ccc0731, type: 3}
+      propertyPath: m_Name
+      value: StrazakWygrana
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 346afc8dfa34d8e47823b87b9ccc0731, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 191861065}
+  m_SourcePrefab: {fileID: 100100000, guid: 346afc8dfa34d8e47823b87b9ccc0731, type: 3}
+--- !u!1 &191861064 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 346afc8dfa34d8e47823b87b9ccc0731, type: 3}
+  m_PrefabInstance: {fileID: 191861063}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &191861065
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191861064}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &961136735
 GameObject:
   m_ObjectHideFlags: 0
@@ -1595,6 +1682,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1410418202}
     m_Modifications:
+    - target: {fileID: 165486465782114514, guid: ac2a4d2524953de4692efa2f84a84ecb, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5392600316510103436, guid: ac2a4d2524953de4692efa2f84a84ecb, type: 3}
       propertyPath: m_Name
       value: Firefighter
@@ -1758,3 +1849,4 @@ SceneRoots:
   - {fileID: 1410418202}
   - {fileID: 8609790736511312995}
   - {fileID: 134831556290564674}
+  - {fileID: 191861063}

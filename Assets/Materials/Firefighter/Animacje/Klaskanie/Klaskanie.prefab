@@ -2812,7 +2812,7 @@ GameObject:
   - component: {fileID: 7263535797814911311}
   - component: {fileID: 5362664146179509539}
   m_Layer: 0
-  m_Name: Strazak Klaskanie
+  m_Name: Klaskanie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

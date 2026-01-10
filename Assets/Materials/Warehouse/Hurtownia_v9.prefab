@@ -1167,7 +1167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   systemElektryki: {fileID: 4292907432285699813}
   player: {fileID: 0}
-  dmgNaSekunde: 50
+  dmgNaSekunde: 80
 --- !u!1 &856274475400915985
 GameObject:
   m_ObjectHideFlags: 0
@@ -1910,7 +1910,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   systemElektryki: {fileID: 4292907432285699813}
   player: {fileID: 0}
-  dmgNaSekunde: 50
+  dmgNaSekunde: 80
 --- !u!1 &1090537744813963958
 GameObject:
   m_ObjectHideFlags: 0
@@ -3412,7 +3412,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   systemElektryki: {fileID: 4292907432285699813}
   player: {fileID: 0}
-  dmgNaSekunde: 50
+  dmgNaSekunde: 80
 --- !u!1 &2148658995620690172
 GameObject:
   m_ObjectHideFlags: 0
@@ -4237,7 +4237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   systemElektryki: {fileID: 4292907432285699813}
   player: {fileID: 0}
-  dmgNaSekunde: 50
+  dmgNaSekunde: 80
 --- !u!1 &2608681960824272301
 GameObject:
   m_ObjectHideFlags: 0
@@ -4793,7 +4793,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   systemElektryki: {fileID: 4292907432285699813}
   player: {fileID: 0}
-  dmgNaSekunde: 50
+  dmgNaSekunde: 80
 --- !u!1 &2927753662983080546
 GameObject:
   m_ObjectHideFlags: 0
@@ -5073,7 +5073,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   systemElektryki: {fileID: 4292907432285699813}
   player: {fileID: 0}
-  dmgNaSekunde: 50
+  dmgNaSekunde: 80
 --- !u!1 &3000075491281135863
 GameObject:
   m_ObjectHideFlags: 0
@@ -5231,7 +5231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   systemElektryki: {fileID: 4292907432285699813}
   player: {fileID: 0}
-  dmgNaSekunde: 50
+  dmgNaSekunde: 80
 --- !u!1 &3510656818022206273
 GameObject:
   m_ObjectHideFlags: 0
@@ -8397,7 +8397,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   systemElektryki: {fileID: 4292907432285699813}
   player: {fileID: 0}
-  dmgNaSekunde: 50
+  dmgNaSekunde: 80
 --- !u!1 &5302105878515127606
 GameObject:
   m_ObjectHideFlags: 0
@@ -8866,7 +8866,6 @@ Transform:
   - {fileID: 6460135113934023533}
   - {fileID: 5084980335846433267}
   - {fileID: 6042042094725189552}
-  - {fileID: 1616804697127085360}
   - {fileID: 7523350888337934457}
   - {fileID: 8018913890599382988}
   - {fileID: 1896069862426521707}
@@ -10612,7 +10611,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   systemElektryki: {fileID: 4292907432285699813}
   player: {fileID: 0}
-  dmgNaSekunde: 50
+  dmgNaSekunde: 80
 --- !u!1 &5868320201947148135
 GameObject:
   m_ObjectHideFlags: 0
@@ -10858,7 +10857,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   systemElektryki: {fileID: 4292907432285699813}
   player: {fileID: 0}
-  dmgNaSekunde: 50
+  dmgNaSekunde: 80
 --- !u!1 &6098615433044761157
 GameObject:
   m_ObjectHideFlags: 0
@@ -10983,7 +10982,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   systemElektryki: {fileID: 4292907432285699813}
   player: {fileID: 0}
-  dmgNaSekunde: 50
+  dmgNaSekunde: 80
 --- !u!1 &6100628734099846764
 GameObject:
   m_ObjectHideFlags: 0
@@ -12359,7 +12358,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   systemElektryki: {fileID: 4292907432285699813}
   player: {fileID: 0}
-  dmgNaSekunde: 50
+  dmgNaSekunde: 80
 --- !u!1 &6606167441515116727
 GameObject:
   m_ObjectHideFlags: 0
@@ -12830,7 +12829,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   systemElektryki: {fileID: 4292907432285699813}
   player: {fileID: 0}
-  dmgNaSekunde: 50
+  dmgNaSekunde: 80
 --- !u!1 &6847824854730259027
 GameObject:
   m_ObjectHideFlags: 0
@@ -13028,7 +13027,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   systemElektryki: {fileID: 4292907432285699813}
   player: {fileID: 0}
-  dmgNaSekunde: 50
+  dmgNaSekunde: 80
 --- !u!1 &7001385646933138640
 GameObject:
   m_ObjectHideFlags: 0
@@ -14533,7 +14532,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   systemElektryki: {fileID: 4292907432285699813}
   player: {fileID: 0}
-  dmgNaSekunde: 50
+  dmgNaSekunde: 80
 --- !u!1 &7902569673942225776
 GameObject:
   m_ObjectHideFlags: 0
@@ -15431,7 +15430,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   systemElektryki: {fileID: 4292907432285699813}
   player: {fileID: 0}
-  dmgNaSekunde: 50
+  dmgNaSekunde: 80
 --- !u!1 &8546977393391571787
 GameObject:
   m_ObjectHideFlags: 0
@@ -15851,7 +15850,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   systemElektryki: {fileID: 4292907432285699813}
   player: {fileID: 0}
-  dmgNaSekunde: 50
+  dmgNaSekunde: 80
 --- !u!1 &8684361963638189667
 GameObject:
   m_ObjectHideFlags: 0
@@ -16494,7 +16493,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   systemElektryki: {fileID: 4292907432285699813}
   player: {fileID: 0}
-  dmgNaSekunde: 50
+  dmgNaSekunde: 80
 --- !u!1 &8970675644142454429
 GameObject:
   m_ObjectHideFlags: 0
@@ -16706,7 +16705,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   systemElektryki: {fileID: 4292907432285699813}
   player: {fileID: 0}
-  dmgNaSekunde: 50
+  dmgNaSekunde: 80
 --- !u!1 &9038415007645097752
 GameObject:
   m_ObjectHideFlags: 0
@@ -16898,7 +16897,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   systemElektryki: {fileID: 4292907432285699813}
   player: {fileID: 0}
-  dmgNaSekunde: 50
+  dmgNaSekunde: 80
 --- !u!1 &9177034490312564608
 GameObject:
   m_ObjectHideFlags: 0
@@ -44829,121 +44828,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1031027387, guid: abc00000000011002252584365545280, type: 3}
   m_PrefabInstance: {fileID: 1611948544854450040}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1616804697841418189
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 4290724725050755876}
-    m_Modifications:
-    - target: {fileID: 1031035644, guid: abc00000000009029529834679996899, type: 3}
-      propertyPath: m_Name
-      value: WM00217-Pallet_Standard395
-      objectReference: {fileID: 0}
-    - target: {fileID: 1031035644, guid: abc00000000009029529834679996899, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1031035644, guid: abc00000000009029529834679996899, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1031035645, guid: abc00000000009029529834679996899, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1031035645, guid: abc00000000009029529834679996899, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1031035645, guid: abc00000000009029529834679996899, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1031035645, guid: abc00000000009029529834679996899, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -4.171079
-      objectReference: {fileID: 0}
-    - target: {fileID: 1031035645, guid: abc00000000009029529834679996899, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.605312
-      objectReference: {fileID: 0}
-    - target: {fileID: 1031035645, guid: abc00000000009029529834679996899, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.2505856
-      objectReference: {fileID: 0}
-    - target: {fileID: 1031035645, guid: abc00000000009029529834679996899, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.99999905
-      objectReference: {fileID: 0}
-    - target: {fileID: 1031035645, guid: abc00000000009029529834679996899, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1031035645, guid: abc00000000009029529834679996899, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.0014080001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1031035645, guid: abc00000000009029529834679996899, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1031035645, guid: abc00000000009029529834679996899, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1031035645, guid: abc00000000009029529834679996899, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1031035645, guid: abc00000000009029529834679996899, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1031035647, guid: abc00000000009029529834679996899, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1031035647, guid: abc00000000009029529834679996899, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 559933111801428298}
-  m_SourcePrefab: {fileID: 100100000, guid: abc00000000009029529834679996899, type: 3}
---- !u!4 &1616804697127085360 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1031035645, guid: abc00000000009029529834679996899, type: 3}
-  m_PrefabInstance: {fileID: 1616804697841418189}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1616804697127085362 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1031035647, guid: abc00000000009029529834679996899, type: 3}
-  m_PrefabInstance: {fileID: 1616804697841418189}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &559933111801428298
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1616804697127085362}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.0107802, y: 0.17175913, z: 1.2158513}
-  m_Center: {x: 0.001248151, y: 0.084965214, z: -0.00044256446}
 --- !u!1001 &1620924792024118672
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -154816,7 +154700,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1031048727, guid: abc00000000015495626840426078760, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.17
+      value: -8.56
       objectReference: {fileID: 0}
     - target: {fileID: 1031048727, guid: abc00000000015495626840426078760, type: 3}
       propertyPath: m_LocalPosition.y

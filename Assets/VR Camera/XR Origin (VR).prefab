@@ -4961,7 +4961,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Mediator: {fileID: 6887383921219595552}
   m_TransformationPriority: 0
-  m_MoveSpeed: 5
+  m_MoveSpeed: 4
   m_EnableStrafe: 1
   m_EnableFly: 0
   m_UseGravity: 1
@@ -6530,6 +6530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cfc44ae32b3164499669ec171bf8878, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scenaIndex: 0
 --- !u!1 &4249264986931130829
 GameObject:
   m_ObjectHideFlags: 0

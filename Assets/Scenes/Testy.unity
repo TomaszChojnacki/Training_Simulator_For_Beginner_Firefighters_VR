@@ -744,7 +744,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1404647141
 Transform:
   m_ObjectHideFlags: 0
@@ -2065,6 +2065,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1238978500665631375, guid: 077413f1b7549374c8d3c20d0c3f2641, type: 3}
+      propertyPath: m_SecondaryAttachTransform
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1244677957548289717, guid: 077413f1b7549374c8d3c20d0c3f2641, type: 3}
       propertyPath: gracz
       value: 
@@ -2081,14 +2085,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1884785411}
-    - target: {fileID: 3213895069438804421, guid: 077413f1b7549374c8d3c20d0c3f2641, type: 3}
-      propertyPath: playerRoot
-      value: 
-      objectReference: {fileID: 1687107848}
-    - target: {fileID: 3213895069438804421, guid: 077413f1b7549374c8d3c20d0c3f2641, type: 3}
-      propertyPath: playerSystem
-      value: 
-      objectReference: {fileID: 1538554430}
     - target: {fileID: 4205386574694580723, guid: 077413f1b7549374c8d3c20d0c3f2641, type: 3}
       propertyPath: m_Camera
       value: 

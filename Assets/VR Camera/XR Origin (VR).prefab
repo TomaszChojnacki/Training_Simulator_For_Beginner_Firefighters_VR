@@ -13880,9 +13880,8 @@ MonoBehaviour:
   glosnoscGwizdka: 0.9
   spadekZdrowia: 10
   regenPowietrza: 20
-  regenZdrowia: 20
   maxPowietrzeBezAparatu: 100
-  scenaPoSmierciBuildIndex: 0
+  scenaPoSmierciBuildIndex: 3
 --- !u!1 &9097787921198209457
 GameObject:
   m_ObjectHideFlags: 0

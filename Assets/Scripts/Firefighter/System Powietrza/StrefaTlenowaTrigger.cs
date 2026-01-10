@@ -1,7 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider))]
-public class StrefaTlenowaOverlap : MonoBehaviour
+public class StrefaTlenowaTrigger : MonoBehaviour
 {
     [Header("Wykrywanie gracz")]
     [SerializeField] private Transform playerRoot;
@@ -10,57 +9,73 @@ public class StrefaTlenowaOverlap : MonoBehaviour
     [Header("Warstwy gracza (dla OverlapBox)")]
     [SerializeField] private LayerMask maskaGracza = ~0;
 
-    //[Header("Diagnostyka")]
-    //[SerializeField] private bool loguj = true;
+    [Header("Boxy strefy")]
+    [SerializeField] private BoxCollider[] boxy;
 
-    private BoxCollider box;
+    [Header("Uwzglednianie triggera na graczu")]
+    [SerializeField] private QueryTriggerInteraction queryTriggers = QueryTriggerInteraction.Collide;
+
     private bool bylWStrefie;
 
     private void Awake()
     {
-        box = GetComponent<BoxCollider>();
-
         if (!playerSystem)
             playerSystem = FindFirstObjectByType<PlayerTlenZdrowie>();
 
         if (!playerRoot && playerSystem)
             playerRoot = playerSystem.transform.root;
+
+        if (boxy == null || boxy.Length == 0)
+            boxy = GetComponentsInChildren<BoxCollider>(true);
     }
 
     private void Update()
     {
         if (!playerSystem || !playerRoot) return;
+        if (boxy == null || boxy.Length == 0) return;
 
-        bool jestWStrefie = CzyPlayerWBoxie();
+        bool jestWStrefie = CzyPlayerWJakimkolwiekBoxie();
 
         if (jestWStrefie != bylWStrefie)
         {
             bylWStrefie = jestWStrefie;
             playerSystem.UstawWStrefie(jestWStrefie);
-
-            //if (loguj)
-            //    Debug.Log(jestWStrefie ? "[StrefaTlenu] ENTER (OverlapBox)" : "[StrefaTlenu] EXIT (OverlapBox)");
         }
     }
 
-    private bool CzyPlayerWBoxie()
+    private bool CzyPlayerWJakimkolwiekBoxie()
     {
-        // Parametry boxa
-        Vector3 centerWorld = transform.TransformPoint(box.center);
-        Vector3 halfExtents = Vector3.Scale(box.size * 0.5f, transform.lossyScale);
-        Quaternion rot = transform.rotation;
-
-        // sprawdzamy czy w boxie jest jakikolwiek collider z warstwy gracza
-        Collider[] hits = Physics.OverlapBox(centerWorld, halfExtents, rot, maskaGracza, QueryTriggerInteraction.Ignore);
-
-        // upewnienie sie ze to z XR Origin (dziecko/rodzic)
-        for (int i = 0; i < hits.Length; i++)
+        for (int b = 0; b < boxy.Length; b++)
         {
-            if (!hits[i]) continue;
+            var box = boxy[b];
+            if (!box || !box.enabled) continue;
 
-            Transform t = hits[i].transform;
-            if (t == playerRoot || t.IsChildOf(playerRoot) || playerRoot.IsChildOf(t))
-                return true;
+            // Parametry boxa w swiecie
+            Vector3 centerWorld = box.transform.TransformPoint(box.center);
+
+            // HalfExtents musi uwzgledniac skale konkretnego boxa
+            Vector3 halfExtents = Vector3.Scale(box.size * 0.5f, box.transform.lossyScale);
+
+            Quaternion rot = box.transform.rotation;
+
+            Collider[] hits = Physics.OverlapBox(
+                centerWorld,
+                halfExtents,
+                rot,
+                maskaGracza,
+                queryTriggers
+            );
+
+            for (int i = 0; i < hits.Length; i++)
+            {
+                if (!hits[i]) continue;
+
+                Transform t = hits[i].transform;
+
+                // Upewnienie ze to XR Origin (dziecko -- rodzic)
+                if (t == playerRoot || t.IsChildOf(playerRoot) || playerRoot.IsChildOf(t))
+                    return true;
+            }
         }
 
         return false;
@@ -69,11 +84,25 @@ public class StrefaTlenowaOverlap : MonoBehaviour
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
-        var b = GetComponent<BoxCollider>();
-        if (!b) return;
+        BoxCollider[] drawBoxy = boxy;
+        if (drawBoxy == null || drawBoxy.Length == 0)
+            drawBoxy = GetComponentsInChildren<BoxCollider>(true);
 
-        Gizmos.matrix = Matrix4x4.TRS(transform.TransformPoint(b.center), transform.rotation, transform.lossyScale);
-        Gizmos.DrawWireCube(Vector3.zero, b.size);
+        if (drawBoxy == null) return;
+
+        for (int i = 0; i < drawBoxy.Length; i++)
+        {
+            var b = drawBoxy[i];
+            if (!b) continue;
+
+            Gizmos.matrix = Matrix4x4.TRS(
+                b.transform.TransformPoint(b.center),
+                b.transform.rotation,
+                b.transform.lossyScale
+            );
+
+            Gizmos.DrawWireCube(Vector3.zero, b.size);
+        }
     }
 #endif
 }

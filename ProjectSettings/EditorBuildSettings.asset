@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 6c80841928301e0439af9afaaba23d1f
   - enabled: 1
-    path: Assets/Scenes/Hurtownia.unity
+    path: Assets/Scenes/Hala dystrybucyjna.unity
     guid: e0f05dcd9be362348a593823f36fc876
   - enabled: 1
     path: Assets/Scenes/Wygrana.unity

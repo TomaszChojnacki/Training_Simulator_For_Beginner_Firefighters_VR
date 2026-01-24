@@ -8978,7 +8978,7 @@ MonoBehaviour:
     d\u017Cojstik do g\xF3ry, aby aktywowa\u0107 tryb teleportacji. Na ziemi pojawi
     si\u0119 okr\u0105g\u0142y wska\u017Anik, kt\xF3ry pokazuje miejsce, w kt\xF3re
     mo\u017Cesz si\u0119 przenie\u015B\u0107. Dodatkowo mo\u017Cliwe jest wyznaczenie
-    kierunku, w jakim ma nast\u0105pi\u0107 ob\xF3t  po teleportacji. Po puszczeniu
+    kierunku, w jakim ma nast\u0105pi\u0107 obr\xF3t  po teleportacji. Po puszczeniu
     d\u017Cojstika Twoja posta\u0107 natychmiast przeniesie si\u0119 w wybrane miejsce."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d1d49523a190620418b9e56d01800408, type: 2}

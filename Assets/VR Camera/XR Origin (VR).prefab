@@ -283,7 +283,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 2
-  m_Radius: 0.15
+  m_Radius: 0.13
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -3089,7 +3089,7 @@ MonoBehaviour:
   m_LiveConeCastDebugVisuals: 0
   m_RaycastMask:
     serializedVersion: 2
-    m_Bits: 2147493921
+    m_Bits: 2147494945
   m_RaycastTriggerInteraction: 1
   m_RaycastSnapVolumeInteraction: 1
   m_HitClosestOnly: 1
@@ -10517,7 +10517,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 4422593273587007013}
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 3
   m_Handedness: 2
   m_AttachTransform: {fileID: 3572837783724436984}
   m_KeepSelectedTargetValid: 1

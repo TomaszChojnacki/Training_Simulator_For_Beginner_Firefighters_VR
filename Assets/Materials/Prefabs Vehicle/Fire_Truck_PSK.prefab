@@ -947,7 +947,7 @@ Transform:
   m_GameObject: {fileID: 453919445714185126}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.01, y: 0.036, z: 0.24}
+  m_LocalPosition: {x: -0.01, y: -0.009, z: 0.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -972,7 +972,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.25, y: 8.5, z: 0.5}
+  m_Size: {x: 2.25, y: 8.7, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &463502992036665946
 GameObject:
@@ -3307,7 +3307,7 @@ Transform:
   m_GameObject: {fileID: 1693123132647908237}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.752, y: 1.984, z: 0.265}
+  m_LocalPosition: {x: 0.73, y: 1.984, z: 0.265}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3799,7 +3799,7 @@ Transform:
   m_GameObject: {fileID: 1935247473808547636}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.746, y: 1.984, z: 0.265}
+  m_LocalPosition: {x: -0.73, y: 1.984, z: 0.265}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16088,9 +16088,9 @@ MonoBehaviour:
   waterPrefab: {fileID: 8833185238291264705, guid: 5b2bab8b6e821334f83086c713df7bd5, type: 3}
   splashPrefab: {fileID: 1422571813400418504, guid: 5f22b4d63c11a7342a28e29902b76b35, type: 3}
   minimalnyZasiegWizualny: 0.5
-  maksymalnyZasiegWizualny: 25
+  maksymalnyZasiegWizualny: 12
   zapasOdSplasha: 0.05
-  zasieg: 25
+  zasieg: 12
   maskaTrafien:
     serializedVersion: 2
     m_Bits: 7863

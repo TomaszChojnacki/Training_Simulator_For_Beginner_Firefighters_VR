@@ -4228,10 +4228,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 820548709246715333, guid: 077413f1b7549374c8d3c20d0c3f2641, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.009
-      objectReference: {fileID: 0}
     - target: {fileID: 1244677957548289717, guid: 077413f1b7549374c8d3c20d0c3f2641, type: 3}
       propertyPath: gracz
       value: 
@@ -4268,10 +4264,6 @@ PrefabInstance:
       propertyPath: playerSystem
       value: 
       objectReference: {fileID: 7224769752322898328}
-    - target: {fileID: 5574061444678292513, guid: 077413f1b7549374c8d3c20d0c3f2641, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.73
-      objectReference: {fileID: 0}
     - target: {fileID: 6204420322255891139, guid: 077413f1b7549374c8d3c20d0c3f2641, type: 3}
       propertyPath: m_Camera
       value: 
@@ -4316,10 +4308,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -64.588
       objectReference: {fileID: 0}
-    - target: {fileID: 6645857132020677829, guid: 077413f1b7549374c8d3c20d0c3f2641, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.73
-      objectReference: {fileID: 0}
     - target: {fileID: 6702440623838128275, guid: 077413f1b7549374c8d3c20d0c3f2641, type: 3}
       propertyPath: m_Camera
       value: 
@@ -4360,10 +4348,6 @@ PrefabInstance:
       propertyPath: playerSystem
       value: 
       objectReference: {fileID: 7224769752322898328}
-    - target: {fileID: 8974307801265505225, guid: 077413f1b7549374c8d3c20d0c3f2641, type: 3}
-      propertyPath: m_Size.y
-      value: 8.7
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7627,6 +7611,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1031027661, guid: abc00000000003653450012803061952, type: 3}
   m_PrefabInstance: {fileID: 7669382719163504090}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1432574659 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 970890123961264396, guid: 767597e072693b34c8f989d33b23361a, type: 3}
+  m_PrefabInstance: {fileID: 1872484709981285664}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1433761617 stripped
 Transform:
@@ -161658,10 +161647,6 @@ PrefabInstance:
       propertyPath: m_VolumeTrigger
       value: 
       objectReference: {fileID: 2158639582099621878}
-    - target: {fileID: 543011520036238927, guid: b55671841c5ee364398d79aaead38498, type: 3}
-      propertyPath: m_InteractionLayers.m_Bits
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 1210083015762238948, guid: b55671841c5ee364398d79aaead38498, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -197937,6 +197922,7 @@ MonoBehaviour:
   - {fileID: 1010266027}
   - {fileID: 7397571928518417384}
   - {fileID: 1129583424}
+  - {fileID: 1432574659}
   m_InteractionLayers:
     m_Bits: 2147483648
   m_DistanceCalculationMode: 1
